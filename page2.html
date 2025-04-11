@@ -20,6 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0;
         }
         
         .journal-container {
@@ -33,11 +34,10 @@
         }
         
         .journal {
-            width: 50%;
+            width: 80%;
+            max-width: 900px;
             height: 90vh;
             background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             transform-origin: center center;
             transform: rotateY(-90deg); /* Commence à -90 degrés */
             transition: transform 0.7s ease-in-out;
@@ -46,20 +46,53 @@
             backface-visibility: visible;
         }
         
+        .journal-frame {
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            position: relative;
+            border: 1px solid #8a7e66;
+            overflow: auto;
+        }
+        
+        /* Cadre décoratif */
+        .journal-frame::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px dotted #8a7e66;
+            pointer-events: none;
+        }
+        
+        .journal-frame::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid #8a7e66;
+            pointer-events: none;
+        }
+        
         .journal.animated {
             transform: rotateY(0deg);
         }
         
         .journal.zoomed {
             width: 100%;
+            max-width: 100%;
             height: 100vh;
             transform: scale(1);
-            overflow-y: auto;
             transition: all 1s ease-in-out;
         }
         
         .journal.shrink {
-            width: 50%;
+            width: 80%;
+            max-width: 900px;
             height: 90vh;
             transition: all 1s ease-in-out;
         }
@@ -70,7 +103,7 @@
         }
         
         .journal-content {
-            padding: 40px;
+            padding: 20px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -85,22 +118,32 @@
         }
         
         .journal-title {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: bold;
             margin-bottom: 10px;
             letter-spacing: 1px;
+            font-style: italic;
         }
         
         .journal-subtitle {
-            font-size: 24px;
-            font-style: italic;
-            color: #555;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .divider {
+            width: 80%;
+            margin: 10px auto;
+            height: 1px;
+            background-color: #333;
         }
         
         .journal-date {
             font-style: italic;
             color: #666;
+            margin-top: 10px;
         }
         
         .navigation {
@@ -163,28 +206,82 @@
         .buttons-container {
             text-align: center;
         }
+        
+        .corner-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+        }
+        
+        .top-left {
+            top: 5px;
+            left: 5px;
+        }
+        
+        .top-right {
+            top: 5px;
+            right: 5px;
+            transform: rotate(90deg);
+        }
+        
+        .bottom-left {
+            bottom: 5px;
+            left: 5px;
+            transform: rotate(-90deg);
+        }
+        
+        .bottom-right {
+            bottom: 5px;
+            right: 5px;
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .column {
+                column-count: 1;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="journal-container">
         <div class="journal">
-            <div class="journal-content">
-                <div class="journal-header">
-                    <h1 class="journal-title">LUCIE TRINQUART</h1>
-                    <h2 class="journal-subtitle">Suite de la page dans cette partie</h2>
-                    <p class="journal-date">Portfolio - Édition <span id="current-date"></span></p>
-                </div>
-                <div class="content">
-                    <div class="column">
-                        <p><span class="first-letter">V</span>oici la suite de mon portfolio en forme de journal. Cette section présente la continuité de mon travail et de mes projets, comme si vous tourniez la page d'un véritable journal.</p>
-                        <p>L'effet de transition entre les pages renforce l'immersion dans cette expérience unique qui simule la lecture d'un journal traditionnel tout en offrant les fonctionnalités d'un site web moderne.</p>
-                        <p>Vous pouvez continuer à explorer mon portfolio en utilisant les boutons de navigation ou en faisant défiler cette page pour découvrir plus de contenu.</p>
+            <div class="journal-frame">
+                <!-- Décorations des coins -->
+                <svg class="corner-decoration top-left" viewBox="0 0 30 30">
+                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                </svg>
+                <svg class="corner-decoration top-right" viewBox="0 0 30 30">
+                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                </svg>
+                <svg class="corner-decoration bottom-left" viewBox="0 0 30 30">
+                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                </svg>
+                <svg class="corner-decoration bottom-right" viewBox="0 0 30 30">
+                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                </svg>
+                
+                <div class="journal-content">
+                    <div class="journal-header">
+                        <h1 class="journal-title">Lady Trinquart's</h1>
+                        <div class="journal-subtitle">Suite de la chronique</div>
+                        <div class="divider"></div>
+                        <p class="journal-date">Édition du <span id="current-date"></span></p>
                     </div>
-                </div>  
-                <div class="buttons-container">
-                    <button class="prev-button" id="prevPageBtn">Page précédente</button>
-                    <button class="next-button" id="nextPageBtn">Page suivante</button>
-                </div>  
+                    <div class="content">
+                        <div class="column">
+                            <p><span class="first-letter">V</span>oici la suite de mon portfolio en forme de journal. Cette section présente la continuité de mon travail et de mes projets, comme si vous tourniez la page d'un véritable journal de la haute société.</p>
+                            <p>L'effet de transition entre les pages renforce l'immersion dans cette expérience unique qui simule la lecture d'un journal traditionnel tout en offrant les fonctionnalités d'un site web moderne.</p>
+                            <p>Chaque page de ce portfolio est conçue comme un article détaillant un aspect différent de mes compétences et réalisations. Cette mise en page élégante reflète mon approche créative et ma passion pour les designs qui racontent une histoire.</p>
+                            <p>Les sections suivantes vous présenteront mes différents projets, mes compétences techniques, ainsi que mon parcours professionnel. Comme dans un journal d'époque, chaque rubrique est soigneusement composée pour offrir une lecture fluide et captivante.</p>
+                        </div>
+                    </div>  
+                    <div class="buttons-container">
+                        <button class="prev-button" id="prevPageBtn">Page précédente</button>
+                        <button class="next-button" id="nextPageBtn">Page suivante</button>
+                    </div>  
+                </div>
             </div>
         </div>
         
@@ -233,6 +330,26 @@
                     // Étape 3: Rediriger vers la page précédente après l'animation
                     setTimeout(function() {
                         window.location.href = 'index.html';
+                    }, 700);
+                }, 1000);
+            });
+            
+            // Gestion du bouton "Page suivante"
+            document.getElementById('nextPageBtn').addEventListener('click', function() {
+                const journal = document.querySelector('.journal');
+                
+                // Étape 1: Rétrécir le journal
+                journal.classList.remove('zoomed');
+                journal.classList.add('shrink');
+                
+                // Étape 2: Faire tourner le journal sur place (vers -90 degrés)
+                setTimeout(function() {
+                    journal.classList.remove('animated');
+                    journal.classList.add('turning');
+                    
+                    // Étape 3: Rediriger vers la page suivante après l'animation
+                    setTimeout(function() {
+                        window.location.href = 'page3.html'; // Vous devrez créer cette page
                     }, 700);
                 }, 1000);
             });
