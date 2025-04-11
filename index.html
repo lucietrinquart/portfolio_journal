@@ -1,0 +1,184 @@
+!DOCTYPE html
+html lang=fr
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleLucie Trinquart - Portfoliotitle
+    style
+         {
+            margin 0;
+            padding 0;
+            box-sizing border-box;
+        }
+        
+        body {
+            font-family 'Times New Roman', Times, serif;
+            background-color #000;
+            color #333;
+            height 100vh;
+            overflow hidden;
+            display flex;
+            justify-content center;
+            align-items center;
+        }
+        
+        .journal-container {
+            width 100%;
+            height 100%;
+            display flex;
+            justify-content center;
+            align-items flex-end;
+            perspective 1000px;
+            position relative;
+        }
+        
+        .journal {
+            width 50%;
+            height 90vh;
+            background-color #f5f5f5;
+            border 1px solid #ddd;
+            box-shadow 0 0 15px rgba(0, 0, 0, 0.2);
+            transform-origin bottom center;
+            transform translateY(100%) rotateX(30deg);
+            transition transform 1.5s ease-in-out;
+            position relative;
+            overflow hidden;
+        }
+        
+        .journal.animated {
+            transform translateY(0) rotateX(0deg);
+        }
+        
+        .journal.zoomed {
+            width 100%;
+            height 100vh;
+            transform scale(1);
+            overflow-y auto;
+            transition all 1s ease-in-out;
+        }
+        
+        .journal-content {
+            padding 40px;
+            height 100%;
+            display flex;
+            flex-direction column;
+            position relative;
+        }
+        
+        .journal-header {
+            text-align center;
+            border-bottom 2px solid #333;
+            padding-bottom 20px;
+            margin-bottom 20px;
+        }
+        
+        .journal-title {
+            font-size 48px;
+            font-weight bold;
+            margin-bottom 10px;
+            letter-spacing 1px;
+        }
+        
+        .journal-date {
+            font-style italic;
+            color #666;
+        }
+        
+        .navigation {
+            display none;
+            padding 20px;
+            background-color rgba(245, 245, 245, 0.9);
+            position fixed;
+            top 0;
+            left 0;
+            right 0;
+            z-index 100;
+        }
+        
+        .navigation.visible {
+            display block;
+        }
+        
+        .additional-content {
+            opacity 0;
+            transition opacity 1s ease-in-out;
+            padding 20px 0;
+        }
+        
+        .additional-content.visible {
+            opacity 1;
+        }
+        
+        .column {
+            column-count 2;
+            column-gap 30px;
+            text-align justify;
+            line-height 1.6;
+        }
+        
+        .first-letter {
+            float left;
+            font-size 75px;
+            line-height 60px;
+            padding-right 8px;
+            padding-top 4px;
+        }
+    style
+head
+body
+    div class=journal-container
+        div class=journal
+            div class=journal-content
+                div class=journal-header
+                    h1 class=journal-titleLUCIE TRINQUARTh1
+                    p class=journal-datePortfolio - Édition span id=current-datespanp
+                div
+                div class=additional-content
+                    div class=column
+                        pspan class=first-letterBspanienvenue sur mon portfolio en forme de journal. Cette présentation unique a été conçue pour vous offrir une expérience immersive et originale.p
+                        pNaviguez à travers ces pages comme vous le feriez avec un véritable journal pour découvrir mes projets, compétences et réalisations.p
+                        pCe format reflète ma créativité et mon approche innovante du design et du développement web.p
+                    div
+                div
+            div
+        div
+        div class=navigation
+            Menu de navigation (à développer)
+        div
+    div
+
+    script
+        document.addEventListener('DOMContentLoaded', function() {
+             Mettre la date actuelle
+            const options = { year 'numeric', month 'long', day 'numeric' };
+            const currentDate = new Date().toLocaleDateString('fr-FR', options);
+            document.getElementById('current-date').textContent = currentDate;
+            
+             Animation d'entrée du journal
+            setTimeout(function() {
+                document.querySelector('.journal').classList.add('animated');
+            }, 500);
+            
+             Zoom après que le journal soit arrivé à sa position
+            setTimeout(function() {
+                document.querySelector('.journal').classList.add('zoomed');
+            }, 2500);
+            
+             Afficher le contenu supplémentaire et activer la navigation après le zoom
+            setTimeout(function() {
+                document.querySelector('.additional-content').classList.add('visible');
+                document.querySelector('.navigation').classList.add('visible');
+                document.body.style.overflow = 'auto';
+            }, 3500);
+            
+             Détection du défilement pour maintenir la navigation visible
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                if (scrollPosition  100) {
+                    document.querySelector('.navigation').classList.add('visible');
+                }
+            });
+        });
+    script
+body
+html
