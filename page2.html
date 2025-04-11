@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucie Trinquart - Portfolio</title>
+    <title>Lucie Trinquart - Portfolio - Page 2</title>
     <style>
         * {
             margin: 0;
@@ -39,15 +39,15 @@
             border: 1px solid #ddd;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             transform-origin: center center;
-            transform: translateY(100%) rotateX(30deg);
-            transition: transform 1.5s ease-in-out;
+            transform: rotateY(-90deg); /* Commence à -90 degrés */
+            transition: transform 0.7s ease-in-out;
             position: relative;
             overflow: hidden;
             backface-visibility: visible;
         }
         
         .journal.animated {
-            transform: translateY(0) rotateX(0deg);
+            transform: rotateY(0deg);
         }
         
         .journal.zoomed {
@@ -65,7 +65,7 @@
         }
         
         .journal.turning {
-            transform: rotateY(90deg);
+            transform: rotateY(-90deg);
             transition: transform 0.7s ease-in-out;
         }
         
@@ -85,10 +85,17 @@
         }
         
         .journal-title {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: bold;
             margin-bottom: 10px;
             letter-spacing: 1px;
+        }
+        
+        .journal-subtitle {
+            font-size: 24px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 10px;
         }
         
         .journal-date {
@@ -111,13 +118,13 @@
             display: block;
         }
         
-        .additional-content {
+        .content {
             opacity: 0;
             transition: opacity 1s ease-in-out;
             padding: 20px 0;
         }
         
-        .additional-content.visible {
+        .content.visible {
             opacity: 1;
         }
         
@@ -136,9 +143,9 @@
             padding-top: 4px;
         }
         
-        .next-button {
-            display: block;
-            margin: 30px auto;
+        .prev-button, .next-button {
+            display: inline-block;
+            margin: 30px 10px;
             padding: 10px 20px;
             background-color: #333;
             color: #fff;
@@ -149,8 +156,12 @@
             transition: background-color 0.3s ease;
         }
         
-        .next-button:hover {
+        .prev-button:hover, .next-button:hover {
             background-color: #555;
+        }
+        
+        .buttons-container {
+            text-align: center;
         }
     </style>
 </head>
@@ -160,18 +171,19 @@
             <div class="journal-content">
                 <div class="journal-header">
                     <h1 class="journal-title">LUCIE TRINQUART</h1>
+                    <h2 class="journal-subtitle">Suite de la page dans cette partie</h2>
                     <p class="journal-date">Portfolio - Édition <span id="current-date"></span></p>
                 </div>
-                <div class="additional-content">
+                <div class="content">
                     <div class="column">
-                        <p><span class="first-letter">B</span>ienvenue sur mon portfolio en forme de journal. Cette présentation unique a été conçue pour vous offrir une expérience immersive et originale.</p>
-                        <p>Naviguez à travers ces pages comme vous le feriez avec un véritable journal pour découvrir mes projets, compétences et réalisations.</p>
-                        <p>Ce format reflète ma créativité et mon approche innovante du design et du développement web.</p>
-                        <p>jnfgienrgin</p>
+                        <p><span class="first-letter">V</span>oici la suite de mon portfolio en forme de journal. Cette section présente la continuité de mon travail et de mes projets, comme si vous tourniez la page d'un véritable journal.</p>
+                        <p>L'effet de transition entre les pages renforce l'immersion dans cette expérience unique qui simule la lecture d'un journal traditionnel tout en offrant les fonctionnalités d'un site web moderne.</p>
+                        <p>Vous pouvez continuer à explorer mon portfolio en utilisant les boutons de navigation ou en faisant défiler cette page pour découvrir plus de contenu.</p>
                     </div>
                 </div>  
-                <div>
-                    <button class="next-button" id="nextPageBtn">Article suivant</button>
+                <div class="buttons-container">
+                    <button class="prev-button" id="prevPageBtn">Page précédente</button>
+                    <button class="next-button" id="nextPageBtn">Page suivante</button>
                 </div>  
             </div>
         </div>
@@ -188,22 +200,42 @@
             const currentDate = new Date().toLocaleDateString('fr-FR', options);
             document.getElementById('current-date').textContent = currentDate;
             
-            // Animation d'entrée du journal
+            // Animation d'entrée du journal (commence à -90 degrés)
             setTimeout(function() {
                 document.querySelector('.journal').classList.add('animated');
-            }, 500);
+            }, 100);
             
             // Zoom après que le journal soit arrivé à sa position
             setTimeout(function() {
                 document.querySelector('.journal').classList.add('zoomed');
-            }, 2500);
+            }, 800);
             
-            // Afficher le contenu supplémentaire et activer la navigation après le zoom
+            // Afficher le contenu et activer la navigation après le zoom
             setTimeout(function() {
-                document.querySelector('.additional-content').classList.add('visible');
+                document.querySelector('.content').classList.add('visible');
                 document.querySelector('.navigation').classList.add('visible');
                 document.body.style.overflow = 'auto';
-            }, 3500);
+            }, 1800);
+            
+            // Gestion du bouton "Page précédente"
+            document.getElementById('prevPageBtn').addEventListener('click', function() {
+                const journal = document.querySelector('.journal');
+                
+                // Étape 1: Rétrécir le journal
+                journal.classList.remove('zoomed');
+                journal.classList.add('shrink');
+                
+                // Étape 2: Faire tourner le journal sur place (vers -90 degrés)
+                setTimeout(function() {
+                    journal.classList.remove('animated');
+                    journal.classList.add('turning');
+                    
+                    // Étape 3: Rediriger vers la page précédente après l'animation
+                    setTimeout(function() {
+                        window.location.href = 'index.html';
+                    }, 700);
+                }, 1000);
+            });
             
             // Détection du défilement pour maintenir la navigation visible
             window.addEventListener('scroll', function() {
@@ -211,25 +243,6 @@
                 if (scrollPosition > 100) {
                     document.querySelector('.navigation').classList.add('visible');
                 }
-            });
-            
-            // Gestion du bouton "Article suivant"
-            document.getElementById('nextPageBtn').addEventListener('click', function() {
-                const journal = document.querySelector('.journal');
-                
-                // Étape 1: Rétrécir le journal
-                journal.classList.remove('zoomed');
-                journal.classList.add('shrink');
-                
-                // Étape 2: Faire tourner le journal sur place jusqu'à 90 degrés
-                setTimeout(function() {
-                    journal.classList.add('turning');
-                    
-                    // Étape 3: Rediriger vers la page suivante après que la rotation à 90° soit terminée
-                    setTimeout(function() {
-                        window.location.href = 'page2.html';
-                    }, 700); // durée ajustée à la vitesse de rotation
-                }, 1000);
             });
         });
     </script>
