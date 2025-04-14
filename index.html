@@ -15,67 +15,60 @@
             font-family: 'Times New Roman', Times, serif;
             background-color: #f3f0e6;
             color: #333;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 0;
+            overflow-x: hidden;
         }
         
         .journal-container {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 1000px;
             position: relative;
+            padding: 20px 0;
         }
         
         .journal {
             width: 80%;
             max-width: 900px;
-            height: 90vh;
+            min-height: 90vh;
             background-color: #f5f5f5;
             transform-origin: center center;
             transform: translateY(100%) rotateX(30deg);
             transition: transform 1.5s ease-in-out;
             position: relative;
-            overflow: hidden;
-            backface-visibility: visible;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .journal-frame {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             padding: 30px;
             position: relative;
             border: 1px solid #8a7e66;
-            overflow: auto;
         }
         
-        /* Cadre décoratif */
-        .journal-frame::before {
-            content: "";
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
+        /* Cadre décoratif avec bordures en CSS plutôt qu'avec pseudo-éléments */
+        .inner-frame {
+            width: 100%;
+            min-height: 100%;
             border: 2px dotted #8a7e66;
-            pointer-events: none;
+            padding: 20px;
+            position: relative;
         }
         
-        .journal-frame::after {
-            content: "";
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
+        .inner-content {
+            width: 100%;
+            min-height: 100%;
             border: 1px solid #8a7e66;
-            pointer-events: none;
+            padding: 20px;
+            position: relative;
         }
         
         .journal.animated {
@@ -85,7 +78,7 @@
         .journal.zoomed {
             width: 100%;
             max-width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             transform: scale(1);
             transition: all 1s ease-in-out;
         }
@@ -93,7 +86,7 @@
         .journal.shrink {
             width: 80%;
             max-width: 900px;
-            height: 90vh;
+            min-height: 90vh;
             transition: all 1s ease-in-out;
         }
         
@@ -103,8 +96,6 @@
         }
         
         .journal-content {
-            padding: 20px;
-            height: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -213,7 +204,6 @@
         .profile-img {
             width: 80px;
             height: 80px;
-            border-radius: 50%;
             border: 1px solid #333;
             padding: 5px;
             background-color: #f5f5f5;
@@ -250,21 +240,566 @@
         }
 
         .image-wrapper {
-  display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement si hauteur définie */
-}
+            display: flex;
+            justify-content: center; 
+            align-items: center;     
+        }
 
-.responsive-img {
-  width: 10%;
-  height: auto;
-}
+        .responsive-img {
+            width: 10%;
+            height: auto;
+        }
+        
+        /* Style pour le titre transparent comme MIRANDA */
+        .transparent-title-container {
+            position: relative;
+            margin: 30px auto;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .transparent-title-bg {
+            position: relative;
+            background-color: #1a1a1a;
+            padding: 20px 0;
+            margin: 10px 0;
+        }
+        
+        .transparent-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color:#f5f5f5;
+            -webkit-text-stroke: 0.5px rgba(210, 204, 193, 0.5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: 3px;
+            margin: 0;
+            position: relative;
+            mix-blend-mode: screen;
+        }
 
+        .black-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color:#000000;
+            -webkit-text-stroke: 0.5px rgba(210, 204, 193, 0.5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: 3px;
+            margin: 0;
+            position: relative;
+        }
         
         @media (max-width: 768px) {
             .column {
                 column-count: 1;
             }
+            
+            .journal {
+                width: 95%;
+            }
+            
+            .transparent-title {
+                font-size: 2.5rem;
+                -webkit-text-stroke: 0.3px rgba(210, 204, 193, 0.5);
+            }
+        }
+
+        /*partie qui je suis*/
+       /* Styles pour le conteneur principal */
+.journal-portfolio-section {
+    width: 100%;
+    padding: 40px 20px;
+    font-family: 'Editorial New', 'Times New Roman', serif;
+    color: #1a1a1a;
+    background-color: #f5f5f5;
+}
+
+/* Structure en colonnes */
+.journal-columns {
+    display: flex;
+    position: relative;
+    gap: 40px;
+}
+
+/* Colonne gauche (1/3) */
+.left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Colonne droite (2/3) */
+.right-column {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Séparateur vertical */
+.vertical-separator {
+    width: 1px;
+    background-color: #000;
+    margin: 0 20px;
+}
+
+/* Conteneurs de titres */
+.title-box {
+    width: 100%;
+}
+
+/* Styles pour les titres avec ligne horizontale */
+/* Modification pour que les lignes passent derrière les mots */
+.strikethrough-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    overflow: hidden; /* Éviter les débordements */
+}
+
+.line-through {
+    position: absolute; /* Position absolue pour traverser toute la largeur */
+    height: 1px;
+    background-color: #999;
+    left: 0;
+    right: 0;
+    top: 50%; /* Centrer verticalement */
+    z-index: 1; /* Mettre la ligne en dessous du texte */
+}
+
+.editorial-title {
+    position: relative;
+    z-index: 2; /* Mettre le texte au-dessus de la ligne */
+    background-color: #f5f5f5; /* Même couleur que le fond */
+    padding: 0 10px; /* Espace autour du texte pour masquer la ligne */
+}
+
+.large-title .editorial-title {
+    font-size: clamp(1.5rem, 5vw, 3.2rem);
+}
+
+.left-column .editorial-title {
+    font-size: 2.5rem;
+}
+
+.right-column .editorial-title {
+    font-size: 2.8rem;
+}
+
+.right-column .large-title {
+    font-size: 3.2rem;
+}
+
+/* Prix avec bordure */
+.award-container {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.award-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Paragraphe avec première lettre spéciale */
+.journal-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.journal-first-letter {
+    float: left;
+    background-color: #000;
+    color: #f5f5f5;
+    padding: 8px 10px;
+    margin-right: 8px;
+    margin-top: 4px;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: bold;
+}
+
+/* Image avec bordure */
+.profile-container {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Centrer l'image horizontalement */
+    overflow: hidden; /* Masquer ce qui dépasse */
+}
+
+.profile-img {
+    width: 80%;
+    height: auto;
+    max-width: 100%; /* S'assurer que l'image ne dépasse pas */
+    display: block;
+    object-fit: cover;
+}
+
+/* Titres empilés dans la colonne droite */
+.stacked-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Media queries pour le responsive */
+@media (max-width: 991px) {
+    .journal-columns {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .vertical-separator {
+        display: none;
+    }
+    
+    .left-column, .right-column {
+        width: 100%;
+    }
+    
+    .right-column {
+        order: -1; /* Affiche la colonne droite en premier sur mobile */
+    }
+    
+    .left-column .editorial-title,
+    .right-column .editorial-title,
+    .right-column .large-title {
+        font-size: calc(1.5rem + 2vw);
+    }
+    
+    .journal-first-letter {
+        font-size: 2.5rem;
+    }
+    
+    .profile-container {
+        max-width: 100%;
+    }
+}
+
+/* Polices personnalisées */
+@font-face {
+    font-family: 'Canopee';
+    src: url('fonts/Canopee-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Editorial New';
+    src: url('fonts/EditorialNew-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback pour les polices non disponibles */
+* {
+    font-family: 'Editorial New', 'Times New Roman', serif;
+}
+
+h1, h2, h3, .editorial-title {
+    font-family: 'Canopee', 'Times New Roman', serif;
+}
+.regroupe{
+    display: flex;
+}
+
+/*test*/
+.journal-card-section {
+            width: 100%;
+            padding: 40px 0;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .journal-card-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            height: 320px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+            padding: 0 20px;
+        }
+
+        .journal-card {
+            width: 80%;
+            max-width: 500px;
+            height: 280px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #000;
+            position: absolute;
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .journal-card-inner {
+            width: 95%;
+            height: 95%;
+            margin: 2.5% auto;
+            border: 2px dotted #8a7e66;
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .journal-card-content {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #8a7e66;
+            border-radius: 4px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .journal-card-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            text-align: center;
+        }
+
+        .journal-card-body {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .journal-card-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .journal-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .journal-card-text {
+            flex: 1;
+            font-size: 0.9rem;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .journal-card-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .author-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .author-title {
+            font-size: 0.7rem;
+            color: #555;
+        }
+
+        /* Positionnement des cartes en chevauchement */
+        .journal-card:nth-child(1) {
+            transform: translateX(-45%) scale(0.95);
+            z-index: 1;
+        }
+
+        .journal-card:nth-child(2) {
+            transform: translateX(-15%) scale(0.95);
+            z-index: 2;
+        }
+
+        .journal-card:nth-child(3) {
+            transform: translateX(15%) scale(0.95);
+            z-index: 3;
+        }
+
+        .journal-card:nth-child(4) {
+            transform: translateX(45%) scale(0.95);
+            z-index: 4;
+        }
+
+        /* Animation au survol */
+        .journal-card:hover {
+            transform: translateX(0) scale(1);
+            z-index: 10;
+        }
+
+        .journal-card:nth-child(1):hover ~ .journal-card:nth-child(2),
+        .journal-card:nth-child(1):hover ~ .journal-card:nth-child(3),
+        .journal-card:nth-child(1):hover ~ .journal-card:nth-child(4) {
+            transform: translateX(70%) scale(0.95);
+        }
+
+        .journal-card:nth-child(2):hover ~ .journal-card:nth-child(3),
+        .journal-card:nth-child(2):hover ~ .journal-card:nth-child(4) {
+            transform: translateX(70%) scale(0.95);
+        }
+
+        .journal-card:nth-child(3):hover ~ .journal-card:nth-child(4) {
+            transform: translateX(70%) scale(0.95);
+        }
+
+        /* Animation pour les cartes précédentes */
+        .journal-card:nth-child(2):hover ~ .journal-card:nth-child(1) {
+            transform: translateX(-85%) scale(0.95);
+        }
+
+        .journal-card:nth-child(3):hover ~ .journal-card:nth-child(1),
+        .journal-card:nth-child(3):hover ~ .journal-card:nth-child(2) {
+            transform: translateX(-85%) scale(0.95);
+        }
+
+        .journal-card:nth-child(4):hover ~ .journal-card:nth-child(1),
+        .journal-card:nth-child(4):hover ~ .journal-card:nth-child(2),
+        .journal-card:nth-child(4):hover ~ .journal-card:nth-child(3) {
+            transform: translateX(-85%) scale(0.95);
+        }
+
+        /* Style pour le titre de la section */
+        .black-title-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #1a1a1a;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .journal-card-container {
+                height: 400px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .journal-card {
+                width: 90%;
+                max-width: 400px;
+                margin-bottom: 20px;
+                position: relative;
+                transform: none !important;
+                height: 220px;
+            }
+
+            .journal-card:nth-child(1),
+            .journal-card:nth-child(2),
+            .journal-card:nth-child(3),
+            .journal-card:nth-child(4) {
+                transform: scale(0.9) !important;
+                top: 0;
+                margin-bottom: -160px;
+            }
+
+            .journal-card:hover {
+                transform: scale(1) !important;
+                z-index: 10;
+            }
+
+            .journal-card-container {
+                height: auto;
+                padding-bottom: 180px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .journal-card {
+                height: 250px;
+            }
+
+            .journal-card:nth-child(1),
+            .journal-card:nth-child(2),
+            .journal-card:nth-child(3),
+            .journal-card:nth-child(4) {
+                margin-bottom: -180px;
+            }
+
+            .journal-card-container {
+                padding-bottom: 220px;
+            }
+
+            .journal-card-body {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animation de rotation au clic */
+        .journal-card.turning {
+            transform: rotateY(90deg);
+            transition: transform 0.7s ease-in-out;
         }
     </style>
 </head>
@@ -272,42 +807,221 @@
     <div class="journal-container">
         <div class="journal">
             <div class="journal-frame">
-                <!-- Décorations des coins -->
-                <svg class="corner-decoration top-left" viewBox="0 0 30 30">
-                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
-                </svg>
-                <svg class="corner-decoration top-right" viewBox="0 0 30 30">
-                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
-                </svg>
-                <svg class="corner-decoration bottom-left" viewBox="0 0 30 30">
-                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
-                </svg>
-                <svg class="corner-decoration bottom-right" viewBox="0 0 30 30">
-                    <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
-                </svg>
-                
-                <div class="journal-content">
-                    <div class="journal-header">
-                        <div class="image-wrapper">
-                            <img src="src/profil.png" alt="profil" class="responsive-img">
-                          </div>
-                                              
-                        <h1 class="journal-title">Lady Trinquart's</h1>
-                        <div class="journal-subtitle">Society Portfolio</div>
-                        <div class="divider"></div>
-                        <p class="journal-date">Édition du <span id="current-date"></span></p>
-                    </div>
-                    <div class="additional-content">
-                        <div class="column">
-                            <p><span class="first-letter">B</span>ienvenue sur mon portfolio en forme de journal. Cette présentation unique a été conçue pour vous offrir une expérience immersive et originale, inspirée des gazettes d'antan qui racontaient les actualités de la haute société.</p>
-                            <p>Naviguez à travers ces pages comme vous le feriez avec un véritable journal pour découvrir mes projets, compétences et réalisations professionnelles.</p>
-                            <p>Ce format reflète ma créativité et mon approche innovante du design et du développement web. Chaque section de ce portfolio est pensée comme un article ou une rubrique thématique présentant un aspect différent de mon travail.</p>
-                            <p>Prenez le temps de parcourir ces pages pour découvrir l'étendue de mes talents et l'originalité de ma démarche créative. Tout comme un bon journal, ce portfolio se veut informatif, captivant et soigneusement élaboré.</p>
+                <div class="inner-frame">
+                    <div class="inner-content">
+                        <!-- Décorations des coins -->
+                        <svg class="corner-decoration top-left" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        <svg class="corner-decoration top-right" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        <svg class="corner-decoration bottom-left" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        <svg class="corner-decoration bottom-right" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        
+                        <div class="journal-content">
+                            <div class="journal-header">
+                                <div class="image-wrapper">
+                                    <img src="src/profil.png" alt="profil" class="responsive-img">
+                                </div>
+                                                    
+                                <h1 class="journal-title">Lady Trinquart's</h1>
+                                <div class="journal-subtitle">Society Portfolio</div>
+                                <div class="divider"></div>
+                                <p class="journal-date">Édition du <span id="current-date"></span></p>
+                            </div>
+                            
+                            <!-- Ajout du titre avec effet transparent comme MIRANDA -->
+                            <div class="transparent-title-container">
+                                <div class="transparent-title-bg">
+                                    <h1 class="transparent-title">La nouvelle développeuse de France</h1>
+                                </div>
+                            </div>
+                            
+<div class="journal-portfolio-section">
+    <!-- Structure en colonnes -->
+    <div class="journal-columns">
+        <!-- Colonne gauche (1/3) -->
+        <div class="left-column">
+            <!-- Élément 1: Titre "Développeuse" -->
+            <div class="title-box small-title">
+                <div class="strikethrough-title">
+                    <div class="line-through"></div>
+                    <h2 class="editorial-title">Développeuse</h2>
+                    <div class="line-through"></div>
+                </div>
+            </div>
+            
+            <!-- Élément 2: Titre "Web" -->
+            <div class="title-box large-title">
+                <div class="strikethrough-title">
+                    <div class="line-through"></div>
+                    <h1 class="editorial-title">Web</h1>
+                    <div class="line-through"></div>
+                </div>
+            </div>
+            
+            <!-- Élément 3: Prix avec bordure -->
+            <div class="award-container">
+                <a href="https://openbadgefactory.com/v1/assertion/673e4d7c31523bedd32decd11fc7eab42e9de896">
+                    <img src="src/prix.png" alt="Prix d'excellence" class="award-img">
+                </a>
+            </div>
+            
+            <!-- Élément 4: Paragraphe avec première lettre spéciale -->
+            <div class="journal-paragraph">
+                <p><span class="journal-first-letter">U</span>ne développeuse renommée après un bac général avec les spécialités: Numérique et science de l'informatique (NSI), Mathématiques et Théâtre. Ensuite elle a eu une license 3 Métier du Multimédia et de l'Internet (MMI) avec un prix d'excellence en 2ème année.</p>
+            </div>
+        </div>
+        
+        <!-- Séparateur vertical -->
+        <div class="vertical-separator"></div>
+        
+        <!-- Colonne droite (2/3) -->
+        <div class="right-column">
+            <!-- Image avec bordure -->
+            <div class="profile-container">
+                <img src="src/moi.JPG" alt="Portrait de Lucie Trinquart" class="profile-img">
+            </div>
+            
+            <!-- Titres empilés -->
+            <div class="stacked-titles">
+                <div class="strikethrough-title">
+                    <div class="line-through"></div>
+                    <h2 class="editorial-title large-title">DÉVELOPPEUSE WEB</h2>
+                    <div class="line-through"></div>
+                </div>
+                <div class="strikethrough-title">
+                    <div class="line-through"></div>
+                    <h2 class="editorial-title">INTERACTIVE DESIGNER</h2>
+                    <div class="line-through"></div>
+                </div>
+                <div class="strikethrough-title">
+                    <div class="line-through"></div>
+                    <h2 class="editorial-title">CREATIVE DEVELOPER</h2>
+                    <div class="line-through"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="regroupe">
+        <div class="transparent-title-container">
+            <div class="transparent-title-bg">
+                <h1 class="transparent-title">Website</h1>
+            </div>
+        </div>
+        <div class="profile-container">
+            <img src="src/prix.png" alt="">
+        </div>
+    </div>
+</div>
+<div class="journal-card-section">
+    
+    <div class="journal-card-container">
+        <!-- Carte 1 -->
+        <div class="journal-card" onclick="turnPage(this)">
+            <div class="journal-card-inner">
+                <div class="journal-card-content">
+                    <div class="journal-card-title">Projet Web Design</div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-text">
+                            "Blurring the line between art and technology, this project showcases innovative design solutions with precise execution."
                         </div>
-                    </div>  
-                    <div>
-                        <button class="next-button" id="nextPageBtn">Article suivant</button>
-                    </div>  
+                    </div>
+                    <div class="journal-card-author">
+                        <div class="author-img">
+                            <img src="src/moi.JPG" alt="Author">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Sam Day</div>
+                            <div class="author-title">Creative Director</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carte 2 -->
+        <div class="journal-card" onclick="turnPage(this)">
+            <div class="journal-card-inner">
+                <div class="journal-card-content">
+                    <div class="journal-card-title">Design Experience</div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-text">
+                            "Niccolò's eye for detail & design as well as his impeccable aesthetics, make him one of the leaders in today's digital design scene"
+                        </div>
+                    </div>
+                    <div class="journal-card-author">
+                        <div class="author-img">
+                            <img src="src/moi.JPG" alt="Author">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Sofia Papadopoulou</div>
+                            <div class="author-title">Designer & Art Director</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carte 3 -->
+        <div class="journal-card" onclick="turnPage(this)">
+            <div class="journal-card-inner">
+                <div class="journal-card-content">
+                    <div class="journal-card-title">Creative Development</div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-text">
+                            "High-skilled designer with unique experiences with each project. His signature is more visible in everything he launches."
+                        </div>
+                    </div>
+                    <div class="journal-card-author">
+                        <div class="author-img">
+                            <img src="src/moi.JPG" alt="Author">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Bruno Arizio</div>
+                            <div class="author-title">Creative Director</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carte 4 -->
+        <div class="journal-card" onclick="turnPage(this)">
+            <div class="journal-card-inner">
+                <div class="journal-card-content">
+                    <div class="journal-card-title">Interactive Design</div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-text">
+                            "A very promising Creative Director and Interactive Designer given her natural aesthetic taste and innate instinct for functionality"
+                        </div>
+                    </div>
+                    <div class="journal-card-author">
+                        <div class="author-img">
+                            <img src="src/moi.JPG" alt="Author">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Enea Rossi</div>
+                            <div class="author-title">Co-Founder at Adoratorio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            <div>
+
+                                <button class="next-button" id="nextPageBtn">Article suivant</button>
+                            </div>  
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -318,6 +1032,15 @@
     </div>
 
     <script>
+                    function turnPage(card) {
+        // Ajouter la classe pour l'animation de rotation
+        card.classList.add('turning');
+        
+        // Rediriger vers la page2.html après que l'animation soit terminée
+        setTimeout(function() {
+            window.location.href = 'page2.html';
+        }, 700);
+    }
         document.addEventListener('DOMContentLoaded', function() {
             // Mettre la date actuelle
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -332,13 +1055,13 @@
             // Zoom après que le journal soit arrivé à sa position
             setTimeout(function() {
                 document.querySelector('.journal').classList.add('zoomed');
+                document.body.style.overflow = 'auto'; // Permettre le défilement à ce stade
             }, 2500);
             
             // Afficher le contenu supplémentaire et activer la navigation après le zoom
             setTimeout(function() {
                 document.querySelector('.additional-content').classList.add('visible');
                 document.querySelector('.navigation').classList.add('visible');
-                document.body.style.overflow = 'auto';
             }, 3500);
             
             // Détection du défilement pour maintenir la navigation visible
@@ -348,7 +1071,7 @@
                     document.querySelector('.navigation').classList.add('visible');
                 }
             });
-            
+
             // Gestion du bouton "Article suivant"
             document.getElementById('nextPageBtn').addEventListener('click', function() {
                 const journal = document.querySelector('.journal');
