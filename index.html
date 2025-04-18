@@ -520,10 +520,9 @@ h1, h2, h3, .editorial-title {
 }
 
 /*test*/
-.journal-card-section {
+   /* Style pour le système de cartes */
+   .journal-card-section {
             width: 100%;
-            padding: 40px 0;
-            margin-top: 30px;
             position: relative;
         }
 
@@ -796,11 +795,412 @@ h1, h2, h3, .editorial-title {
             }
         }
 
-        /* Animation de rotation au clic */
-        .journal-card.turning {
-            transform: rotateY(90deg);
-            transition: transform 0.7s ease-in-out;
+        /*test website*/
+        /* Style pour la section Websites */
+    .websites-section {
+        width: 100%;
+        padding: 40px 0;
+        margin-top: 30px;
+        position: relative;
+    }
+    
+    /* Container du carrousel */
+    .websites-carousel-container {
+        position: relative;
+        width: 90%;
+        max-width: 1200px;
+        margin: 30px auto;
+        overflow: hidden;
+    }
+    
+    /* Carrousel lui-même */
+    .websites-carousel {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 20px;
+        padding: 10px;
+    }
+    
+    /* Élément individuel du projet */
+    .website-item {
+        flex: 0 0 auto;
+        width: 300px;
+        background-color: #f5f5f5;
+        border: 1px solid #8a7e66;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .website-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Image du projet */
+    .website-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        border-bottom: 1px solid #8a7e66;
+    }
+    
+    .website-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .website-item:hover .website-image img {
+        transform: scale(1.05);
+    }
+    
+    /* Informations sur le projet */
+    .website-info {
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-top: 5px double #8a7e66;
+        position: relative;
+    }
+    
+    /* Style du titre du projet */
+    .website-title {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-decoration: underline;
+        text-align: center;
+        color: #333;
+    }
+    
+    /* Description du projet */
+    .website-description {
+        font-size: 0.9rem;
+        font-style: italic;
+        line-height: 1.4;
+        text-align: justify;
+        color: #555;
+    }
+    
+    /* Style pour les boutons de navigation du carrousel */
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: #1a1a1a;
+        color: #f5f5f5;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    
+    .carousel-btn:hover {
+        background-color: #333;
+    }
+    
+    .prev-btn {
+        left: -20px;
+    }
+    
+    .next-btn {
+        right: -20px;
+    }
+    
+    /* Style effet journal ancien */
+    .website-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
+        opacity: 0.05;
+        pointer-events: none;
+    }
+    
+    /* Responsive */
+    @media (max-width: 991px) {
+        .websites-carousel-container {
+            width: 85%;
         }
+        
+        .website-item {
+            width: 250px;
+        }
+        
+        .website-image {
+            height: 180px;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        .websites-carousel-container {
+            width: 80%;
+        }
+        
+        .website-item {
+            width: 220px;
+        }
+        
+        .website-image {
+            height: 150px;
+        }
+        
+        .carousel-btn {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+        }
+    }
+    
+    @media (max-width: 575px) {
+        .websites-carousel-container {
+            width: 90%;
+        }
+        
+        .website-item {
+            width: 100%;
+        }
+        
+        .carousel-btn {
+            display: none;
+        }
+        
+        .websites-carousel {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            padding: 10px 0;
+        }
+        
+        .website-item {
+            scroll-snap-align: start;
+            margin-right: 15px;
+        }
+    }
+
+    /*test jeu vr*/
+    .vr-projects-section {
+    width: 100%;
+    padding: 20px;
+    margin: 40px 0;
+    position: relative;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.vr-projects-title {
+    margin-bottom: 40px;
+}
+
+.vr-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    position: relative;
+}
+
+/* Style de base pour chaque projet */
+.vr-project {
+    position: relative;
+    background-color: #f9f7f1;
+    border: 1px solid #8a7e66;
+    min-height: 420px;
+    transform: rotate(-1deg);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vr-project:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.vr-project:nth-child(3) {
+    transform: rotate(-0.5deg);
+}
+
+.vr-project:hover {
+    transform: scale(1.02) rotate(0);
+    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.18);
+    z-index: 2;
+}
+
+.vr-project-inner {
+    width: 95%;
+    height: 97%;
+    margin: 1.5% auto;
+    border: 1px dotted #8a7e66;
+    padding: 10px;
+}
+
+.vr-project-content {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #8a7e66;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* En-tête du projet */
+.vr-project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.vr-project-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.vr-project-date {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Image du projet */
+.vr-project-img-container {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    height: 180px;
+    border: 1px solid #8a7e66;
+}
+
+.vr-project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.vr-project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.vr-project-overlay span {
+    border: 1px solid white;
+    padding: 5px 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+}
+
+.vr-project:hover .vr-project-overlay {
+    opacity: 1;
+}
+
+.vr-project:hover .vr-project-img {
+    transform: scale(1.05);
+}
+
+/* Description du projet */
+.vr-project-description {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.vr-project-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: justify;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Tags du projet */
+.vr-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.vr-tag {
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    background-color: #e0d8c3;
+    border: 1px solid #8a7e66;
+    color: #333;
+}
+
+/* Effet de papier ancien */
+.vr-project::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,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');
+    opacity: 0.08;
+    z-index: -1;
+}
+
+/* Media queries pour responsivité */
+@media screen and (max-width: 992px) {
+    .vr-projects-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .vr-project {
+        min-height: 400px;
+    }
+    
+    .vr-project-title {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .vr-projects-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .vr-project {
+        transform: none !important;
+    }
+    
+    .vr-project-img-container {
+        height: 200px;
+    }
+}
     </style>
 </head>
 <body>
@@ -908,14 +1308,81 @@ h1, h2, h3, .editorial-title {
             </div>
         </div>
     </div>
+    <div class="websites-section">
+        <div class="transparent-title-container">
+            <div class="transparent-title-bg">
+                <h1 class="transparent-title">Websites</h1>
+            </div>
+        </div>
+        
+        <div class="websites-carousel-container">
+            <button class="carousel-btn prev-btn">&lt;</button>
+            
+            <div class="websites-carousel">
+                <!-- Projet 1 -->
+                <div class="website-item" onclick="navigateToPage('page2.html')">
+                    <div class="website-image">
+                        <img src="src/moi.JPG" alt="Projet 1">
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Projet Restaurant</h3>
+                        <p class="website-description">Site web responsive pour un restaurant local avec système de réservation en ligne.</p>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="website-item" onclick="navigateToPage('page2.html')">
+                    <div class="website-image">
+                        <img src="src/moi.JPG" alt="Projet 2">
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Portfolio Photographe</h3>
+                        <p class="website-description">Galerie interactive pour un photographe professionnel avec animations personnalisées.</p>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="website-item" onclick="navigateToPage('page2.html')">
+                    <div class="website-image">
+                        <img src="src/moi.JPG" alt="Projet 3">
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">E-commerce Boutique</h3>
+                        <p class="website-description">Plateforme de vente en ligne avec système de panier et paiement sécurisé.</p>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="website-item" onclick="navigateToPage('page2.html')">
+                    <div class="website-image">
+                        <img src="src/moi.JPG" alt="Projet 4">
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Application Web</h3>
+                        <p class="website-description">Dashboard interactif pour la gestion de données avec visualisations graphiques.</p>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="website-item" onclick="navigateToPage('page2.html')">
+                    <div class="website-image">
+                        <img src="src/moi.JPG" alt="Projet 5">
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Blog Thématique</h3>
+                        <p class="website-description">Site de publication d'articles avec système de commentaires et partage social.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn next-btn">&gt;</button>
+        </div>
+    </div>
     <div class="regroupe">
         <div class="transparent-title-container">
             <div class="transparent-title-bg">
-                <h1 class="transparent-title">Website</h1>
+                <h1 class="transparent-title">Maquette</h1>
             </div>
-        </div>
-        <div class="profile-container">
-            <img src="src/prix.png" alt="">
         </div>
     </div>
 </div>
@@ -923,11 +1390,14 @@ h1, h2, h3, .editorial-title {
     
     <div class="journal-card-container">
         <!-- Carte 1 -->
-        <div class="journal-card" onclick="turnPage(this)">
+        <div class="journal-card" onclick="navigateToPage('page2.html')">
             <div class="journal-card-inner">
                 <div class="journal-card-content">
                     <div class="journal-card-title">Projet Web Design</div>
                     <div class="journal-card-body">
+                        <div class="journal-card-img">
+                            <img src="src/moi.JPG" alt="Projet Image">
+                        </div>
                         <div class="journal-card-text">
                             "Blurring the line between art and technology, this project showcases innovative design solutions with precise execution."
                         </div>
@@ -946,11 +1416,14 @@ h1, h2, h3, .editorial-title {
         </div>
         
         <!-- Carte 2 -->
-        <div class="journal-card" onclick="turnPage(this)">
+        <div class="journal-card" onclick="navigateToPage('page2.html')">
             <div class="journal-card-inner">
                 <div class="journal-card-content">
                     <div class="journal-card-title">Design Experience</div>
                     <div class="journal-card-body">
+                        <div class="journal-card-img">
+                            <img src="src/moi.JPG" alt="Projet Image">
+                        </div>
                         <div class="journal-card-text">
                             "Niccolò's eye for detail & design as well as his impeccable aesthetics, make him one of the leaders in today's digital design scene"
                         </div>
@@ -969,11 +1442,14 @@ h1, h2, h3, .editorial-title {
         </div>
         
         <!-- Carte 3 -->
-        <div class="journal-card" onclick="turnPage(this)">
+        <div class="journal-card" onclick="navigateToPage('page2.html')">
             <div class="journal-card-inner">
                 <div class="journal-card-content">
                     <div class="journal-card-title">Creative Development</div>
                     <div class="journal-card-body">
+                        <div class="journal-card-img">
+                            <img src="src/moi.JPG" alt="Projet Image">
+                        </div>
                         <div class="journal-card-text">
                             "High-skilled designer with unique experiences with each project. His signature is more visible in everything he launches."
                         </div>
@@ -992,11 +1468,14 @@ h1, h2, h3, .editorial-title {
         </div>
         
         <!-- Carte 4 -->
-        <div class="journal-card" onclick="turnPage(this)">
+        <div class="journal-card" onclick="navigateToPage('page2.html')">
             <div class="journal-card-inner">
                 <div class="journal-card-content">
                     <div class="journal-card-title">Interactive Design</div>
                     <div class="journal-card-body">
+                        <div class="journal-card-img">
+                            <img src="src/moi.JPG" alt="Projet Image">
+                        </div>
                         <div class="journal-card-text">
                             "A very promising Creative Director and Interactive Designer given her natural aesthetic taste and innate instinct for functionality"
                         </div>
@@ -1015,7 +1494,102 @@ h1, h2, h3, .editorial-title {
         </div>
     </div>
 </div>
-
+<!-- Section VR Projects -->
+<div class="vr-projects-section">
+    <div class="vr-projects-title">
+        <div class="transparent-title-container">
+            <div class="transparent-title-bg">
+                <h1 class="transparent-title">Jeux VR</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="vr-projects-container">
+        <!-- Projet VR 1 -->
+        <div class="vr-project" onclick="navigateToPage('page2.html')">
+            <div class="vr-project-inner">
+                <div class="vr-project-content">
+                    <div class="vr-project-header">
+                        <h3 class="vr-project-title">L'Exploration Cosmique</h3>
+                        <div class="vr-project-date">Mars 2025</div>
+                    </div>
+                    
+                    <div class="vr-project-img-container">
+                        <img src="src/moi.JPG" alt="Projet VR Cosmos" class="vr-project-img">
+                        <div class="vr-project-overlay">
+                            <span>Découvrir</span>
+                        </div>
+                    </div>
+                    
+                    <div class="vr-project-description">
+                        <p class="vr-project-text">Une expérience immersive qui transporte les utilisateurs à travers les galaxies, permettant d'explorer des planètes lointaines et de découvrir des phénomènes cosmiques extraordinaires.</p>
+                        <div class="vr-project-tags">
+                            <span class="vr-tag">Unity3D</span>
+                            <span class="vr-tag">Oculus</span>
+                            <span class="vr-tag">C#</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projet VR 2 -->
+        <div class="vr-project" onclick="navigateToPage('page2.html')">
+            <div class="vr-project-inner">
+                <div class="vr-project-content">
+                    <div class="vr-project-header">
+                        <h3 class="vr-project-title">Mystère Archéologique</h3>
+                        <div class="vr-project-date">Décembre 2024</div>
+                    </div>
+                    
+                    <div class="vr-project-img-container">
+                        <img src="src/moi.JPG" alt="Projet VR Archéologie" class="vr-project-img">
+                        <div class="vr-project-overlay">
+                            <span>Découvrir</span>
+                        </div>
+                    </div>
+                    
+                    <div class="vr-project-description">
+                        <p class="vr-project-text">Jeu d'aventure où le joueur incarne un archéologue explorant des ruines anciennes et résolvant des énigmes pour découvrir des secrets perdus des civilisations disparues.</p>
+                        <div class="vr-project-tags">
+                            <span class="vr-tag">Unreal Engine</span>
+                            <span class="vr-tag">HTC Vive</span>
+                            <span class="vr-tag">Blueprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projet VR 3 -->
+        <div class="vr-project" onclick="navigateToPage('page2.html')">
+            <div class="vr-project-inner">
+                <div class="vr-project-content">
+                    <div class="vr-project-header">
+                        <h3 class="vr-project-title">Voyage Musical</h3>
+                        <div class="vr-project-date">Octobre 2024</div>
+                    </div>
+                    
+                    <div class="vr-project-img-container">
+                        <img src="src/moi.JPG" alt="Projet VR Musical" class="vr-project-img">
+                        <div class="vr-project-overlay">
+                            <span>Découvrir</span>
+                        </div>
+                    </div>
+                    
+                    <div class="vr-project-description">
+                        <p class="vr-project-text">Expérience sensorielle où les mouvements du joueur créent de la musique dans un environnement visuel réactif, transformant le corps en instrument virtuel.</p>
+                        <div class="vr-project-tags">
+                            <span class="vr-tag">WebXR</span>
+                            <span class="vr-tag">Three.js</span>
+                            <span class="vr-tag">Tone.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                             <div>
 
                                 <button class="next-button" id="nextPageBtn">Article suivant</button>
@@ -1032,39 +1606,43 @@ h1, h2, h3, .editorial-title {
     </div>
 
     <script>
-                    function turnPage(card) {
-        // Ajouter la classe pour l'animation de rotation
-        card.classList.add('turning');
+    function navigateToPage(pageUrl) {
+        // Récupérer la div journal principale
+        const journal = document.querySelector('.journal');
         
-        // Rediriger vers la page2.html après que l'animation soit terminée
+        // Étape 1: Rétrécir le journal
+        journal.classList.remove('zoomed');
+        journal.classList.add('shrink');
+        
+        // Étape 2: Faire tourner le journal sur place jusqu'à 90 degrés
         setTimeout(function() {
-            window.location.href = 'page2.html';
-        }, 700);
+            journal.classList.add('turning');
+            
+            // Étape 3: Rediriger vers la page suivante après que la rotation à 90° soit terminée
+            setTimeout(function() {
+                window.location.href = pageUrl;
+            }, 700); // durée ajustée à la vitesse de rotation
+        }, 1000);
     }
         document.addEventListener('DOMContentLoaded', function() {
-            // Mettre la date actuelle
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const currentDate = new Date().toLocaleDateString('fr-FR', options);
             document.getElementById('current-date').textContent = currentDate;
             
-            // Animation d'entrée du journal
             setTimeout(function() {
                 document.querySelector('.journal').classList.add('animated');
             }, 500);
             
-            // Zoom après que le journal soit arrivé à sa position
             setTimeout(function() {
                 document.querySelector('.journal').classList.add('zoomed');
                 document.body.style.overflow = 'auto'; // Permettre le défilement à ce stade
             }, 2500);
             
-            // Afficher le contenu supplémentaire et activer la navigation après le zoom
             setTimeout(function() {
                 document.querySelector('.additional-content').classList.add('visible');
                 document.querySelector('.navigation').classList.add('visible');
             }, 3500);
             
-            // Détection du défilement pour maintenir la navigation visible
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.scrollY;
                 if (scrollPosition > 100) {
@@ -1072,23 +1650,163 @@ h1, h2, h3, .editorial-title {
                 }
             });
 
-            // Gestion du bouton "Article suivant"
             document.getElementById('nextPageBtn').addEventListener('click', function() {
                 const journal = document.querySelector('.journal');
                 
-                // Étape 1: Rétrécir le journal
                 journal.classList.remove('zoomed');
                 journal.classList.add('shrink');
                 
-                // Étape 2: Faire tourner le journal sur place jusqu'à 90 degrés
                 setTimeout(function() {
                     journal.classList.add('turning');
                     
-                    // Étape 3: Rediriger vers la page suivante après que la rotation à 90° soit terminée
                     setTimeout(function() {
                         window.location.href = 'page2.html';
-                    }, 700); // durée ajustée à la vitesse de rotation
+                    }, 700); 
                 }, 1000);
+            });
+        });
+
+        // La fonction navigateToPage est déjà dans votre code initial
+// Mais je l'inclus ici pour référence
+
+function navigateToPage(pageUrl) {
+    // Récupérer la div journal principale
+    const journal = document.querySelector('.journal');
+    
+    // Étape 1: Rétrécir le journal
+    journal.classList.remove('zoomed');
+    journal.classList.add('shrink');
+    
+    // Étape 2: Faire tourner le journal sur place jusqu'à 90 degrés
+    setTimeout(function() {
+        journal.classList.add('turning');
+        
+        // Étape 3: Rediriger vers la page suivante après que la rotation à 90° soit terminée
+        setTimeout(function() {
+            window.location.href = pageUrl;
+        }, 700); // durée ajustée à la vitesse de rotation
+    }, 1000);
+}
+
+// Animation d'apparition pour les projets VR
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation existante pour le journal...
+    
+    // Ajouter animation pour les projets VR (effet d'apparition progressive)
+    const vrProjects = document.querySelectorAll('.vr-project');
+    
+    // Observer l'intersection pour animer les projets quand ils entrent dans la viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Ajouter un délai différent pour chaque projet
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = entry.target.style.transform.replace('translateY(30px)', '');
+                }, index * 200);
+                
+                // Arrêter d'observer une fois animé
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    // Initialiser l'état des projets et les observer
+    vrProjects.forEach((project) => {
+        project.style.opacity = '0';
+        project.style.transform += ' translateY(30px)';
+        observer.observe(project);
+    });
+});
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fonctions existantes...
+            
+            // Ajoutez ce code pour le carrousel
+            const carousel = document.querySelector('.websites-carousel');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const items = document.querySelectorAll('.website-item');
+            
+            let currentIndex = 0;
+            const itemWidth = 300; // Largeur d'un élément + gap
+            const itemsPerView = Math.floor(carousel.offsetWidth / itemWidth);
+            const maxIndex = Math.max(0, items.length - itemsPerView);
+            
+            // Fonction pour mettre à jour la position du carrousel
+            function updateCarousel() {
+                const offset = -currentIndex * (itemWidth + 20); // 20px est le gap
+                carousel.style.transform = `translateX(${offset}px)`;
+            }
+            
+            // Event listeners pour les boutons
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                        updateCarousel();
+                    }
+                });
+            }
+            
+            // Ajouter la fonctionnalité tactile pour le mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            carousel.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            carousel.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe gauche -> direction droite
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                        updateCarousel();
+                    }
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe droite -> direction gauche
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                }
+            }
+            
+            // Ajuster le carrousel en cas de redimensionnement
+            window.addEventListener('resize', function() {
+                const newItemsPerView = Math.floor(carousel.offsetWidth / itemWidth);
+                const newMaxIndex = Math.max(0, items.length - newItemsPerView);
+                
+                if (currentIndex > newMaxIndex) {
+                    currentIndex = newMaxIndex;
+                }
+                
+                updateCarousel();
+            });
+            
+            // Activer la navigation pour chaque élément du carousel
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    const pageUrl = item.getAttribute('data-url') || 'page2.html';
+                    navigateToPage(pageUrl);
+                });
             });
         });
     </script>
