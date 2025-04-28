@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucie Trinquart - Portfolio - Page 2</title>
+    <title>Lucie Trinquart - Projet Pokédex</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        @font-face {
+            font-family: 'OldNewspaper';
+            src: url('https://fonts.cdnfonts.com/css/old-newspaper') format('woff2');
         }
         
         body {
@@ -52,6 +57,8 @@
             padding: 30px;
             position: relative;
             border: 1px solid #8a7e66;
+            background-image: url('data:image/png;base64,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');
+            background-blend-mode: multiply;
         }
         
         /* Cadre décoratif avec bordures en CSS plutôt qu'avec pseudo-éléments */
@@ -76,8 +83,8 @@
         }
         
         .journal.zoomed {
-            width: 100%;
-            max-width: 100%;
+            width: 95%;
+            max-width: 1200px;
             min-height: 100vh;
             transform: scale(1);
             transition: all 1s ease-in-out;
@@ -137,6 +144,16 @@
             margin-top: 10px;
         }
         
+        .newspaper-headline {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
         .navigation {
             display: none;
             padding: 20px;
@@ -162,11 +179,12 @@
             opacity: 1;
         }
         
-        .column {
+        .two-columns {
             column-count: 2;
             column-gap: 30px;
             text-align: justify;
             line-height: 1.6;
+            margin-bottom: 30px;
         }
         
         .first-letter {
@@ -228,13 +246,333 @@
             transform: rotate(180deg);
         }
         
+        .article-section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .article-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            border-bottom: 1px solid #8a7e66;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .newspaper-subheadline {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .project-image {
+            float: right;
+            margin: 0 0 20px 20px;
+            max-width: 300px;
+            border: 1px solid #333;
+            padding: 5px;
+            background-color: #f5f5f5;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            transform: rotate(1deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-image:hover {
+            transform: rotate(-1deg) scale(1.02);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .skill-meter {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .skill-name {
+            width: 120px;
+            font-weight: bold;
+        }
+        
+        .skill-bar {
+            flex-grow: 1;
+            height: 15px;
+            background-color: #ddd;
+            position: relative;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background-color: #8a7e66;
+        }
+        
+        .skill-value {
+            margin-left: 10px;
+            width: 30px;
+            text-align: right;
+        }
+        
+        .difficulty-item {
+            background-color: #f8f5f0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid #8a7e66;
+            position: relative;
+        }
+        
+        .difficulty-item::before {
+            content: '✎';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #8a7e66;
+            background-color: #f3f0e6;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-comparison {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .project-card {
+            flex: 1;
+            border: 1px solid #8a7e66;
+            padding: 15px;
+            background-color: #f8f5f0;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-card-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border-bottom: 1px dashed #8a7e66;
+            padding-bottom: 5px;
+        }
+        
+        .project-card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 1px solid #8a7e66;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+        
+        .mySlides {
+            display: none;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+        
+        .text {
+            color: #333;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(245, 245, 245, 0.7);
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .active, .dot:hover {
+            background-color: #8a7e66;
+        }
+        
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+        
+        .stamp {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 150px;
+            height: 150px;
+            transform: rotate(15deg);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .stamp-text {
+            border: 5px solid #8a7e66;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            color: #8a7e66;
+            transform: rotate(-15deg);
+        }
+        
+        .project-conclusion {
+            font-style: italic;
+            text-align: center;
+            max-width: 80%;
+            margin: 30px auto;
+            padding: 15px;
+            border-top: 1px solid #8a7e66;
+            border-bottom: 1px solid #8a7e66;
+        }
+        
+        .ink-splatter {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .splatter1 {
+            top: 150px;
+            left: 50px;
+            transform: rotate(45deg);
+        }
+        
+        .splatter2 {
+            bottom: 200px;
+            right: 70px;
+            transform: rotate(-30deg);
+        }
+        
+        .interactive-note {
+            position: absolute;
+            width: 150px;
+            padding: 10px;
+            background-color: #fff9c4;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            font-family: cursive;
+            font-size: 14px;
+            z-index: 10;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .note1 {
+            top: 300px;
+            right: 50px;
+        }
+        
+        .note2 {
+            bottom: 150px;
+            left: 30px;
+            transform: rotate(5deg);
+        }
+        
+        .interactive-note:hover {
+            transform: rotate(0) scale(1.05);
+            z-index: 20;
+        }
+        
         @media (max-width: 768px) {
-            .column {
+            .two-columns {
                 column-count: 1;
             }
             
             .journal {
                 width: 95%;
+            }
+            
+            .project-image {
+                float: none;
+                margin: 0 auto 20px;
+                display: block;
+                max-width: 100%;
+            }
+            
+            .project-comparison {
+                flex-direction: column;
+            }
+            
+            .stamp {
+                width: 100px;
+                height: 100px;
+                top: 30px;
+                right: 30px;
+            }
+            
+            .interactive-note {
+                position: relative;
+                margin: 20px auto;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
             }
         }
     </style>
@@ -259,21 +597,175 @@
                             <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
                         </svg>
                         
+                        <!-- Éléments décoratifs -->
+                        <div class="stamp">
+                            <div class="stamp-text">Projet validé<br>Mai 2024</div>
+                        </div>
+                        
+                        <svg class="ink-splatter splatter1" viewBox="0 0 100 100">
+                            <path d="M50,0 C60,20 80,30 90,40 C95,60 80,80 60,90 C40,95 20,80 10,60 C5,40 20,20 40,10 C45,5 40,10 50,0 Z" fill="#000" />
+                        </svg>
+                        
+                        <svg class="ink-splatter splatter2" viewBox="0 0 100 100">
+                            <path d="M30,10 C50,5 70,15 85,35 C90,55 85,75 65,90 C45,95 25,85 10,65 C5,45 10,25 30,10 Z" fill="#000" />
+                        </svg>
+                        
                         <div class="journal-content">
                             <div class="journal-header">
-                                <h1 class="journal-title">Lady Trinquart's</h1>
-                                <div class="journal-subtitle">Suite de la chronique</div>
+                                <h1 class="journal-title">La Gazette de Lucie</h1>
+                                <div class="journal-subtitle">Chronique des projets remarquables</div>
                                 <div class="divider"></div>
                                 <p class="journal-date">Édition du <span id="current-date"></span></p>
                             </div>
+                            
                             <div class="content">
-                                <div class="column">
-                                    <p><span class="first-letter">V</span>oici la suite de mon portfolio en forme de journal. Cette section présente la continuité de mon travail et de mes projets, comme si vous tourniez la page d'un véritable journal de la haute société.</p>
-                                    <p>L'effet de transition entre les pages renforce l'immersion dans cette expérience unique qui simule la lecture d'un journal traditionnel tout en offrant les fonctionnalités d'un site web moderne.</p>
-                                    <p>Chaque page de ce portfolio est conçue comme un article détaillant un aspect différent de mes compétences et réalisations. Cette mise en page élégante reflète mon approche créative et ma passion pour les designs qui racontent une histoire.</p>
-                                    <p>Les sections suivantes vous présenteront mes différents projets, mes compétences techniques, ainsi que mon parcours professionnel. Comme dans un journal d'époque, chaque rubrique est soigneusement composée pour offrir une lecture fluide et captivante.</p>
+                                <h2 class="newspaper-headline">LE POKÉDEX: UN PROJET COMPLET DE DÉVELOPPEMENT WEB</h2>
+                                <p class="newspaper-subheadline">Une application moderne combinant Laravel, Angular et Tailwind</p>
+                                
+                                <div class="article-section">
+                                    <h3 class="article-title">Présentation du projet</h3>
+                                    <img src="src/moi.jpg" alt="Image du projet Pokédex" class="project-image">
+                                    <div class="two-columns">
+                                        <p><span class="first-letter">L</span>e projet Pokédex représente une étape importante dans mon parcours de développement web. Il s'agissait de créer une application complète en utilisant des technologies modernes: Laravel pour le backend, Angular pour le frontend et Tailwind CSS pour le style.</p>
+                                        <p>Chaque étudiant a reçu une maquette unique sur le thème Pokémon, qu'il devait reproduire fidèlement. Notre application devait consommer une API Pokémon pour afficher les données des créatures, et implémenter un système d'authentification via GitHub.</p>
+                                        <p>Ce projet complet nous a permis d'explorer l'intégration de différentes technologies et de comprendre comment elles fonctionnent ensemble pour créer une application web moderne et fonctionnelle.</p>
+                                    </div>
                                 </div>
-                            </div>  
+                                
+                                <div class="article-section">
+                                    <h3 class="article-title">Compétences développées</h3>
+                                    <p>Ce projet a été l'occasion de développer plusieurs compétences essentielles dans le cadre de ma formation MMI en 3ème année:</p>
+                                    
+                                    <div class="skill-meter">
+                                        <span class="skill-name">Laravel</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 85%;"></div>
+                                        </div>
+                                        <div class="skill-level" style="width: 85%;"></div>
+                                        </div>
+                                        <span class="skill-value">85%</span>
+                                    </div>
+                                    
+                                    <div class="skill-meter">
+                                        <span class="skill-name">Angular</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 75%;"></div>
+                                        </div>
+                                        <span class="skill-value">75%</span>
+                                    </div>
+                                    
+                                    <div class="skill-meter">
+                                        <span class="skill-name">Tailwind CSS</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 80%;"></div>
+                                        </div>
+                                        <span class="skill-value">80%</span>
+                                    </div>
+                                    
+                                    <div class="skill-meter">
+                                        <span class="skill-name">API REST</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 90%;"></div>
+                                        </div>
+                                        <span class="skill-value">90%</span>
+                                    </div>
+                                    
+                                    <div class="skill-meter">
+                                        <span class="skill-name">Authentification</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 70%;"></div>
+                                        </div>
+                                        <span class="skill-value">70%</span>
+                                    </div>
+                                    
+                                    <p class="interactive-note note1">Cette expérience professionnalisante m'a permis de développer des compétences très recherchées sur le marché du travail!</p>
+                                </div>
+                                
+                                <div class="article-section">
+                                    <h3 class="article-title">Difficultés rencontrées</h3>
+                                    
+                                    <div class="slideshow-container">
+                                        <div class="mySlides fade">
+                                            <img src="src/moi.jpg" alt="Difficulté avec l'API Pokémon" style="width:100%; max-height:300px; object-fit:cover;">
+                                            <div class="text">Complexité de l'API Pokémon</div>
+                                        </div>
+                                        
+                                        <div class="mySlides fade">
+                                            <img src="src/moi.jpg" alt="Problèmes avec la maquette" style="width:100%; max-height:300px; object-fit:cover;">
+                                            <div class="text">Maquette incomplète et imprécise</div>
+                                        </div>
+                                        
+                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                    </div>
+                                    <br>
+                                    
+                                    <div style="text-align:center">
+                                        <span class="dot" onclick="currentSlide(1)"></span> 
+                                        <span class="dot" onclick="currentSlide(2)"></span> 
+                                    </div>
+                                    
+                                    <div class="difficulty-item">
+                                        <p><strong>Méconnaissance de l'univers Pokémon:</strong> N'étant pas familière avec cet univers, j'ai eu du mal à comprendre certains aspects de l'API et à saisir la logique derrière les relations entre les différentes entités.</p>
+                                    </div>
+                                    
+                                    <div class="difficulty-item">
+                                        <p><strong>Maquette incomplète:</strong> La maquette qui m'a été fournie comportait des éléments manquants ou imprécis, ce qui a compliqué son implémentation fidèle.</p>
+                                    </div>
+                                    
+                                    <div class="difficulty-item">
+                                        <p><strong>Authentification GitHub:</strong> L'implémentation de l'authentification via GitHub a été particulièrement problématique, avec de nombreuses erreurs en boucle qui ont nécessité une recherche approfondie pour être résolues.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="article-section">
+                                    <h3 class="article-title">Évolution à travers mes projets</h3>
+                                    
+                                    <div class="project-comparison">
+                                        <div class="project-card">
+                                            <h4 class="project-card-title">1ère année: Jeu Pokémon</h4>
+                                            <img src="src/moi.jpg" alt="Projet de première année" class="project-card-image">
+                                            <ul>
+                                                <li>API simplifiée créée par les professeurs</li>
+                                                <li>Authentification basique avec BDD</li>
+                                                <li>Pas de maquette imposée</li>
+                                                <li>Technologies: HTML, CSS, JavaScript</li>
+                                            </ul>
+                                            <p><a href="https://lucietrinquart.github.io/site_portfolio.io/media/site/pokemon/index.html" target="_blank">Voir le projet</a></p>
+                                        </div>
+                                        
+                                        <div class="project-card">
+                                            <h4 class="project-card-title">2ème année: CinéQuest</h4>
+                                            <img src="src/moi.jpg" alt="Projet de deuxième année" class="project-card-image">
+                                            <ul>
+                                                <li>API films plus complexe mais compréhensible</li>
+                                                <li>Gestion des comptes utilisateurs</li>
+                                                <li>Système de notes et commentaires</li>
+                                                <li>Maquette créée par nous-mêmes</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="project-card">
+                                            <h4 class="project-card-title">3ème année: Pokédex</h4>
+                                            <img src="src/moi.jpg" alt="Projet de troisième année" class="project-card-image">
+                                            <ul>
+                                                <li>API Pokémon complexe et complète</li>
+                                                <li>Authentification sécurisée via GitHub</li>
+                                                <li>Respect strict d'une maquette imposée</li>
+                                                <li>Technologies modernes: Laravel, Angular, Tailwind</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <p>L'évolution entre ces trois projets montre clairement ma progression technique et esthétique. J'ai pu constater une nette amélioration dans ma capacité à créer des applications fonctionnelles et visuellement attractives, tout en intégrant des technologies de plus en plus complexes.</p>
+                                    <p class="interactive-note note2">Je suis fière de voir ma progression à travers ces projets de plus en plus complexes!</p>
+                                </div>
+                                
+                                <div class="project-conclusion">
+                                    <p>Ce projet Pokédex a été une expérience d'apprentissage extrêmement enrichissante, tant sur le plan technique que professionnel. Il m'a permis d'acquérir des compétences précieuses dans des technologies modernes et de développer ma capacité à surmonter des défis complexes - des atouts majeurs pour ma future carrière.</p>
+                                </div>
+                            </div>
+                            
                             <div class="buttons-container">
                                 <button class="prev-button" id="prevPageBtn">Page précédente</button>
                                 <button class="next-button" id="nextPageBtn">Page suivante</button>
@@ -353,12 +845,80 @@
                 }, 1000);
             });
             
+            // Notes interactives - effet de survol amélioré
+            const notes = document.querySelectorAll('.interactive-note');
+            notes.forEach(note => {
+                note.addEventListener('mouseover', function() {
+                    this.style.transform = 'rotate(0) scale(1.1)';
+                    this.style.zIndex = '20';
+                });
+                
+                note.addEventListener('mouseout', function() {
+                    if (this.classList.contains('note1')) {
+                        this.style.transform = 'rotate(-3deg)';
+                    } else {
+                        this.style.transform = 'rotate(5deg)';
+                    }
+                    this.style.zIndex = '10';
+                });
+            });
+            
             // Détection du défilement pour maintenir la navigation visible
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.scrollY;
                 if (scrollPosition > 100) {
                     document.querySelector('.navigation').classList.add('visible');
                 }
+            });
+            
+            // Carrousel d'images
+            let slideIndex = 1;
+            showSlides(slideIndex);
+            
+            // Fonction pour les contrôles du carrousel
+            window.plusSlides = function(n) {
+                showSlides(slideIndex += n);
+            }
+            
+            window.currentSlide = function(n) {
+                showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+                let i;
+                let slides = document.getElementsByClassName("mySlides");
+                let dots = document.getElementsByClassName("dot");
+                
+                if (n > slides.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = slides.length}
+                
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                
+                slides[slideIndex-1].style.display = "block";
+                dots[slideIndex-1].className += " active";
+            }
+            
+            // Défilement automatique du carrousel
+            setInterval(function() {
+                plusSlides(1);
+            }, 5000);
+            
+            // Animation pour les barres de compétences
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(skill => {
+                const originalWidth = skill.style.width;
+                skill.style.width = '0';
+                
+                setTimeout(() => {
+                    skill.style.transition = 'width 1.5s ease-in-out';
+                    skill.style.width = originalWidth;
+                }, 2000);
             });
         });
     </script>

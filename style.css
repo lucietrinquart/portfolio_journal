@@ -1,0 +1,1196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f3f0e6;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.journal-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.journal {
+    width: 80%;
+    max-width: 900px;
+    min-height: 90vh;
+    background-color: #f5f5f5;
+    transform-origin: center center;
+    transform: translateY(100%) rotateX(30deg);
+    transition: transform 1.5s ease-in-out;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.journal-frame {
+    width: 100%;
+    min-height: 100%;
+    padding: 30px;
+    position: relative;
+    border: 1px solid #8a7e66;
+}
+
+/* Cadre décoratif avec bordures en CSS plutôt qu'avec pseudo-éléments */
+.inner-frame {
+    width: 100%;
+    min-height: 100%;
+    border: 2px dotted #8a7e66;
+    padding: 20px;
+    position: relative;
+}
+
+.inner-content {
+    width: 100%;
+    min-height: 100%;
+    border: 1px solid #8a7e66;
+    padding: 20px;
+    position: relative;
+}
+
+.journal.animated {
+    transform: translateY(0) rotateX(0deg);
+}
+
+.journal.zoomed {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    transform: scale(1);
+    transition: all 1s ease-in-out;
+}
+
+.journal.shrink {
+    width: 80%;
+    max-width: 900px;
+    min-height: 90vh;
+    transition: all 1s ease-in-out;
+}
+
+.journal.turning {
+    transform: rotateY(90deg);
+    transition: transform 0.7s ease-in-out;
+}
+
+.journal-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.journal-header {
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.journal-title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+
+.journal-subtitle {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.divider {
+    width: 80%;
+    margin: 10px auto;
+    height: 1px;
+    background-color: #333;
+}
+
+.journal-date {
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+}
+
+.navigation {
+    display: none;
+    padding: 20px;
+    background-color: rgba(245, 245, 245, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.navigation.visible {
+    display: block;
+}
+
+.additional-content {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    padding: 20px 0;
+}
+
+.additional-content.visible {
+    opacity: 1;
+}
+
+.column {
+    column-count: 2;
+    column-gap: 30px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.first-letter {
+    float: left;
+    font-size: 75px;
+    line-height: 60px;
+    padding-right: 8px;
+    padding-top: 4px;
+}
+
+.next-button {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+    background-color: #555;
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #333;
+    padding: 5px;
+    background-color: #f5f5f5;
+}
+
+.corner-decoration {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+}
+
+.top-left {
+    top: 5px;
+    left: 5px;
+}
+
+.top-right {
+    top: 5px;
+    right: 5px;
+    transform: rotate(90deg);
+}
+
+.bottom-left {
+    bottom: 5px;
+    left: 5px;
+    transform: rotate(-90deg);
+}
+
+.bottom-right {
+    bottom: 5px;
+    right: 5px;
+    transform: rotate(180deg);
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+}
+
+.responsive-img {
+    width: 10%;
+    height: auto;
+}
+
+/* Style pour le titre transparent comme MIRANDA */
+.transparent-title-container {
+    position: relative;
+    margin: 30px auto;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.transparent-title-bg {
+    position: relative;
+    background-color: #1a1a1a;
+    padding: 20px 0;
+    margin: 10px 0;
+}
+
+.transparent-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:#f5f5f5;
+    -webkit-text-stroke: 0.5px rgba(210, 204, 193, 0.5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    letter-spacing: 3px;
+    margin: 0;
+    position: relative;
+    mix-blend-mode: screen;
+}
+
+.black-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:#000000;
+    -webkit-text-stroke: 0.5px rgba(210, 204, 193, 0.5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    letter-spacing: 3px;
+    margin: 0;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .column {
+        column-count: 1;
+    }
+    
+    .journal {
+        width: 95%;
+    }
+    
+    .transparent-title {
+        font-size: 2.5rem;
+        -webkit-text-stroke: 0.3px rgba(210, 204, 193, 0.5);
+    }
+}
+
+/*partie qui je suis*/
+/* Styles pour le conteneur principal */
+.journal-portfolio-section {
+width: 100%;
+padding: 40px 20px;
+font-family: 'Editorial New', 'Times New Roman', serif;
+color: #1a1a1a;
+background-color: #f5f5f5;
+}
+
+/* Structure en colonnes */
+.journal-columns {
+display: flex;
+position: relative;
+gap: 40px;
+}
+
+/* Colonne gauche (1/3) */
+.left-column {
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 30px;
+}
+
+/* Colonne droite (2/3) */
+.right-column {
+flex: 2;
+display: flex;
+flex-direction: column;
+gap: 30px;
+}
+
+/* Séparateur vertical */
+.vertical-separator {
+width: 1px;
+background-color: #000;
+margin: 0 20px;
+}
+
+/* Conteneurs de titres */
+.title-box {
+width: 100%;
+}
+
+/* Styles pour les titres avec ligne horizontale */
+/* Modification pour que les lignes passent derrière les mots */
+.strikethrough-title {
+position: relative;
+display: flex;
+align-items: center;
+margin: 15px 0;
+overflow: hidden; /* Éviter les débordements */
+}
+
+.line-through {
+position: absolute; /* Position absolue pour traverser toute la largeur */
+height: 1px;
+background-color: #999;
+left: 0;
+right: 0;
+top: 50%; /* Centrer verticalement */
+z-index: 1; /* Mettre la ligne en dessous du texte */
+}
+
+.editorial-title {
+position: relative;
+z-index: 2; /* Mettre le texte au-dessus de la ligne */
+background-color: #f5f5f5; /* Même couleur que le fond */
+padding: 0 10px; /* Espace autour du texte pour masquer la ligne */
+}
+
+.large-title .editorial-title {
+font-size: clamp(1.5rem, 5vw, 3.2rem);
+}
+
+.left-column .editorial-title {
+font-size: 2.5rem;
+}
+
+.right-column .editorial-title {
+font-size: 2.8rem;
+}
+
+.right-column .large-title {
+font-size: 3.2rem;
+}
+
+/* Prix avec bordure */
+.award-container {
+width: 100%;
+padding: 5px;
+border: 1px solid #000;
+}
+
+.award-img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+/* Paragraphe avec première lettre spéciale */
+.journal-paragraph {
+font-size: 1.1rem;
+line-height: 1.6;
+text-align: justify;
+}
+
+.journal-first-letter {
+float: left;
+background-color: #000;
+color: #f5f5f5;
+padding: 8px 10px;
+margin-right: 8px;
+margin-top: 4px;
+font-size: 3rem;
+line-height: 1;
+font-weight: bold;
+}
+
+/* Image avec bordure */
+.profile-container {
+width: 100%;
+padding: 5px;
+margin-bottom: 20px;
+display: flex;
+justify-content: center; /* Centrer l'image horizontalement */
+overflow: hidden; /* Masquer ce qui dépasse */
+}
+
+.profile-img {
+width: 80%;
+height: auto;
+max-width: 100%; /* S'assurer que l'image ne dépasse pas */
+display: block;
+object-fit: cover;
+}
+
+/* Titres empilés dans la colonne droite */
+.stacked-titles {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+/* Media queries pour le responsive */
+@media (max-width: 991px) {
+.journal-columns {
+flex-direction: column;
+gap: 40px;
+}
+
+.vertical-separator {
+display: none;
+}
+
+.left-column, .right-column {
+width: 100%;
+}
+
+.right-column {
+order: -1; /* Affiche la colonne droite en premier sur mobile */
+}
+
+.left-column .editorial-title,
+.right-column .editorial-title,
+.right-column .large-title {
+font-size: calc(1.5rem + 2vw);
+}
+
+.journal-first-letter {
+font-size: 2.5rem;
+}
+
+.profile-container {
+max-width: 100%;
+}
+}
+
+/* Polices personnalisées */
+@font-face {
+font-family: 'Canopee';
+src: url('fonts/Canopee-Regular.woff2') format('woff2');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Editorial New';
+src: url('fonts/EditorialNew-Regular.woff2') format('woff2');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
+}
+
+/* Fallback pour les polices non disponibles */
+* {
+font-family: 'Editorial New', 'Times New Roman', serif;
+}
+
+h1, h2, h3, .editorial-title {
+font-family: 'Canopee', 'Times New Roman', serif;
+}
+.regroupe{
+display: flex;
+}
+
+/*test*/
+/* Style pour le système de cartes */
+.journal-card-section {
+    width: 100%;
+    position: relative;
+}
+
+.journal-card-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 320px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+    padding: 0 20px;
+}
+
+.journal-card {
+    width: 80%;
+    max-width: 500px;
+    height: 280px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid #000;
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.journal-card-inner {
+    width: 95%;
+    height: 95%;
+    margin: 2.5% auto;
+    border: 2px dotted #8a7e66;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.journal-card-content {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #8a7e66;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.journal-card-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.journal-card-body {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.journal-card-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+.journal-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.journal-card-text {
+    flex: 1;
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.journal-card-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.author-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.author-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.author-title {
+    font-size: 0.7rem;
+    color: #555;
+}
+
+/* Positionnement des cartes en chevauchement */
+.journal-card:nth-child(1) {
+    transform: translateX(-45%) scale(0.95);
+    z-index: 1;
+}
+
+.journal-card:nth-child(2) {
+    transform: translateX(-15%) scale(0.95);
+    z-index: 2;
+}
+
+.journal-card:nth-child(3) {
+    transform: translateX(15%) scale(0.95);
+    z-index: 3;
+}
+
+.journal-card:nth-child(4) {
+    transform: translateX(45%) scale(0.95);
+    z-index: 4;
+}
+
+/* Animation au survol */
+.journal-card:hover {
+    transform: translateX(0) scale(1);
+    z-index: 10;
+}
+
+.journal-card:nth-child(1):hover ~ .journal-card:nth-child(2),
+.journal-card:nth-child(1):hover ~ .journal-card:nth-child(3),
+.journal-card:nth-child(1):hover ~ .journal-card:nth-child(4) {
+    transform: translateX(70%) scale(0.95);
+}
+
+.journal-card:nth-child(2):hover ~ .journal-card:nth-child(3),
+.journal-card:nth-child(2):hover ~ .journal-card:nth-child(4) {
+    transform: translateX(70%) scale(0.95);
+}
+
+.journal-card:nth-child(3):hover ~ .journal-card:nth-child(4) {
+    transform: translateX(70%) scale(0.95);
+}
+
+/* Animation pour les cartes précédentes */
+.journal-card:nth-child(2):hover ~ .journal-card:nth-child(1) {
+    transform: translateX(-85%) scale(0.95);
+}
+
+.journal-card:nth-child(3):hover ~ .journal-card:nth-child(1),
+.journal-card:nth-child(3):hover ~ .journal-card:nth-child(2) {
+    transform: translateX(-85%) scale(0.95);
+}
+
+.journal-card:nth-child(4):hover ~ .journal-card:nth-child(1),
+.journal-card:nth-child(4):hover ~ .journal-card:nth-child(2),
+.journal-card:nth-child(4):hover ~ .journal-card:nth-child(3) {
+    transform: translateX(-85%) scale(0.95);
+}
+
+/* Style pour le titre de la section */
+.black-title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #1a1a1a;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .journal-card-container {
+        height: 400px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .journal-card {
+        width: 90%;
+        max-width: 400px;
+        margin-bottom: 20px;
+        position: relative;
+        transform: none !important;
+        height: 220px;
+    }
+
+    .journal-card:nth-child(1),
+    .journal-card:nth-child(2),
+    .journal-card:nth-child(3),
+    .journal-card:nth-child(4) {
+        transform: scale(0.9) !important;
+        top: 0;
+        margin-bottom: -160px;
+    }
+
+    .journal-card:hover {
+        transform: scale(1) !important;
+        z-index: 10;
+    }
+
+    .journal-card-container {
+        height: auto;
+        padding-bottom: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    .journal-card {
+        height: 250px;
+    }
+
+    .journal-card:nth-child(1),
+    .journal-card:nth-child(2),
+    .journal-card:nth-child(3),
+    .journal-card:nth-child(4) {
+        margin-bottom: -180px;
+    }
+
+    .journal-card-container {
+        padding-bottom: 220px;
+    }
+
+    .journal-card-body {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+/*test website*/
+/* Style pour la section Websites */
+.websites-section {
+width: 100%;
+padding: 40px 0;
+margin-top: 30px;
+position: relative;
+}
+
+/* Container du carrousel */
+.websites-carousel-container {
+position: relative;
+width: 90%;
+max-width: 1200px;
+margin: 30px auto;
+overflow: hidden;
+}
+
+/* Carrousel lui-même */
+.websites-carousel {
+display: flex;
+transition: transform 0.5s ease;
+gap: 20px;
+padding: 10px;
+}
+
+/* Élément individuel du projet */
+.website-item {
+flex: 0 0 auto;
+width: 300px;
+background-color: #f5f5f5;
+border: 1px solid #8a7e66;
+cursor: pointer;
+transition: all 0.3s ease;
+overflow: hidden;
+position: relative;
+}
+
+.website-item:hover {
+transform: translateY(-10px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Image du projet */
+.website-image {
+width: 100%;
+height: 200px;
+overflow: hidden;
+border-bottom: 1px solid #8a7e66;
+}
+
+.website-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s ease;
+}
+
+.website-item:hover .website-image img {
+transform: scale(1.05);
+}
+
+/* Informations sur le projet */
+.website-info {
+padding: 20px;
+background-color: #f5f5f5;
+border-top: 5px double #8a7e66;
+position: relative;
+}
+
+/* Style du titre du projet */
+.website-title {
+font-family: 'Times New Roman', Times, serif;
+font-size: 1.3rem;
+font-weight: bold;
+margin-bottom: 10px;
+text-decoration: underline;
+text-align: center;
+color: #333;
+}
+
+/* Description du projet */
+.website-description {
+font-size: 0.9rem;
+font-style: italic;
+line-height: 1.4;
+text-align: justify;
+color: #555;
+}
+
+/* Style pour les boutons de navigation du carrousel */
+.carousel-btn {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 40px;
+background-color: #1a1a1a;
+color: #f5f5f5;
+border: none;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+z-index: 10;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+background-color: #333;
+}
+
+.prev-btn {
+left: -20px;
+}
+
+.next-btn {
+right: -20px;
+}
+
+/* Style effet journal ancien */
+.website-item::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: url('data:image/png;base64,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');
+opacity: 0.05;
+pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+.websites-carousel-container {
+    width: 85%;
+}
+
+.website-item {
+    width: 250px;
+}
+
+.website-image {
+    height: 180px;
+}
+}
+
+@media (max-width: 767px) {
+.websites-carousel-container {
+    width: 80%;
+}
+
+.website-item {
+    width: 220px;
+}
+
+.website-image {
+    height: 150px;
+}
+
+.carousel-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+}
+}
+
+@media (max-width: 575px) {
+.websites-carousel-container {
+    width: 90%;
+}
+
+.website-item {
+    width: 100%;
+}
+
+.carousel-btn {
+    display: none;
+}
+
+.websites-carousel {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
+}
+
+.website-item {
+    scroll-snap-align: start;
+    margin-right: 15px;
+}
+}
+
+/*test jeu vr*/
+.vr-projects-section {
+width: 100%;
+padding: 20px;
+margin: 40px 0;
+position: relative;
+background-color: #f5f5f5;
+overflow: hidden;
+}
+
+.vr-projects-title {
+margin-bottom: 40px;
+}
+
+.vr-projects-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+position: relative;
+}
+
+/* Style de base pour chaque projet */
+.vr-project {
+position: relative;
+background-color: #f9f7f1;
+border: 1px solid #8a7e66;
+min-height: 420px;
+transform: rotate(-1deg);
+transition: all 0.4s ease;
+cursor: pointer;
+overflow: hidden;
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vr-project:nth-child(2) {
+transform: rotate(1deg);
+}
+
+.vr-project:nth-child(3) {
+transform: rotate(-0.5deg);
+}
+
+.vr-project:hover {
+transform: scale(1.02) rotate(0);
+box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.18);
+z-index: 2;
+}
+
+.vr-project-inner {
+width: 95%;
+height: 97%;
+margin: 1.5% auto;
+border: 1px dotted #8a7e66;
+padding: 10px;
+}
+
+.vr-project-content {
+width: 100%;
+height: 100%;
+border: 1px solid #8a7e66;
+padding: 15px;
+display: flex;
+flex-direction: column;
+position: relative;
+}
+
+/* En-tête du projet */
+.vr-project-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+border-bottom: 1px solid #333;
+padding-bottom: 10px;
+margin-bottom: 15px;
+}
+
+.vr-project-title {
+font-family: 'Times New Roman', Times, serif;
+font-size: 1.6rem;
+font-weight: bold;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.vr-project-date {
+font-style: italic;
+font-size: 0.9rem;
+color: #555;
+}
+
+/* Image du projet */
+.vr-project-img-container {
+position: relative;
+overflow: hidden;
+margin-bottom: 15px;
+height: 180px;
+border: 1px solid #8a7e66;
+}
+
+.vr-project-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: all 0.5s ease;
+}
+
+.vr-project-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.vr-project-overlay span {
+border: 1px solid white;
+padding: 5px 15px;
+background-color: rgba(0, 0, 0, 0.5);
+font-style: italic;
+}
+
+.vr-project:hover .vr-project-overlay {
+opacity: 1;
+}
+
+.vr-project:hover .vr-project-img {
+transform: scale(1.05);
+}
+
+/* Description du projet */
+.vr-project-description {
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+}
+
+.vr-project-text {
+font-size: 0.95rem;
+line-height: 1.5;
+text-align: justify;
+margin-bottom: 15px;
+flex-grow: 1;
+font-family: 'Times New Roman', Times, serif;
+}
+
+/* Tags du projet */
+.vr-project-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-top: auto;
+}
+
+.vr-tag {
+font-size: 0.8rem;
+padding: 2px 8px;
+background-color: #e0d8c3;
+border: 1px solid #8a7e66;
+color: #333;
+}
+
+/* Effet de papier ancien */
+.vr-project::before {
+content: '';
+position: absolute;
+width: 100%;
+height: 100%;
+background-image: url('data:image/png;base64,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');
+opacity: 0.08;
+z-index: -1;
+}
+
+/* Media queries pour responsivité */
+@media screen and (max-width: 992px) {
+.vr-projects-container {
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+}
+
+@media screen and (max-width: 768px) {
+.vr-project {
+min-height: 400px;
+}
+
+.vr-project-title {
+font-size: 1.4rem;
+}
+}
+
+@media screen and (max-width: 576px) {
+.vr-projects-container {
+grid-template-columns: 1fr;
+}
+
+.vr-project {
+transform: none !important;
+}
+
+.vr-project-img-container {
+height: 200px;
+}
+}
