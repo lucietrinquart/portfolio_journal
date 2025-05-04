@@ -305,211 +305,437 @@ body {
 }
 
 /*partie qui je suis*/
-/* Styles pour le conteneur principal */
+:root {
+    --paper-color: #f5f5f5;
+    --ink-color: #222;
+    --accent-color: #8b0000;
+    --secondary-color: #472f15;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Réinitialisation et styles de base */
+
+/* Conteneur principal avec effet de vieux papier */
 .journal-portfolio-section {
-width: 100%;
-padding: 40px 20px;
-font-family: 'Editorial New', 'Times New Roman', serif;
-color: #1a1a1a;
-background-color: #f5f5f5;
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Structure en colonnes */
+/* Effet de taches de café et d'usure */
+.journal-portfolio-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* En-tête du journal */
+.journal-header {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 3px double var(--ink-color);
+    position: relative;
+}
+
+.newspaper-title {
+    font-family: 'Canopee', 'Georgia', serif;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+.newspaper-title span {
+    display: inline-block;
+    transform: scaleY(1.2);
+}
+
+.newspaper-date {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 5px;
+}
+
+.newspaper-motto {
+    font-family: 'Editorial New', 'Georgia', serif;
+    font-style: italic;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+/* Structure en colonnes du corps principal */
 .journal-columns {
-display: flex;
-position: relative;
-gap: 40px;
+    display: flex;
+    gap: 25px;
+    position: relative;
+    z-index: 2;
 }
 
-/* Colonne gauche (1/3) */
+/* Colonne gauche */
 .left-column {
-flex: 1;
-display: flex;
-flex-direction: column;
-gap: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-/* Colonne droite (2/3) */
+/* Colonne droite */
 .right-column {
-flex: 2;
-display: flex;
-flex-direction: column;
-gap: 30px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-/* Séparateur vertical */
+/* Séparateur vertical entre colonnes */
 .vertical-separator {
-width: 1px;
-background-color: #000;
-margin: 0 20px;
+    width: 1px;
+    background-color: var(--ink-color);
+    position: relative;
 }
 
-/* Conteneurs de titres */
+.vertical-separator::before,
+.vertical-separator::after {
+    content: "★";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.vertical-separator::before {
+    top: 0;
+}
+
+.vertical-separator::after {
+    bottom: 0;
+}
+
+/* Titres stylisés */
 .title-box {
-width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-/* Styles pour les titres avec ligne horizontale */
-/* Modification pour que les lignes passent derrière les mots */
-.strikethrough-title {
-position: relative;
-display: flex;
-align-items: center;
-margin: 15px 0;
-overflow: hidden; /* Éviter les débordements */
+.small-title h2 {
+    font-family: 'Canopee', 'Georgia', serif;
+    font-size: 1.8rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 5px 0;
+    letter-spacing: 1px;
+    position: relative;
 }
 
-.line-through {
-position: absolute; /* Position absolue pour traverser toute la largeur */
-height: 1px;
-background-color: #999;
-left: 0;
-right: 0;
-top: 50%; /* Centrer verticalement */
-z-index: 1; /* Mettre la ligne en dessous du texte */
+.large-title h1 {
+    font-family: 'Canopee', 'Georgia', serif;
+    font-size: 3.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    position: relative;
+    color: var(--accent-color);
+    line-height: 1;
+    transform: scaleY(1.2);
+    margin: 10px 0;
 }
 
-.editorial-title {
-position: relative;
-z-index: 2; /* Mettre le texte au-dessus de la ligne */
-background-color: #f5f5f5; /* Même couleur que le fond */
-padding: 0 10px; /* Espace autour du texte pour masquer la ligne */
-}
-
-.large-title .editorial-title {
-font-size: clamp(1.5rem, 5vw, 3.2rem);
-}
-
-.left-column .editorial-title {
-font-size: 2.5rem;
-}
-
-.right-column .editorial-title {
-font-size: 2.8rem;
-}
-
-.right-column .large-title {
-font-size: 3.2rem;
-}
-
-/* Prix avec bordure */
+/* Conteneur pour le prix */
 .award-container {
-width: 100%;
-padding: 5px;
-border: 1px solid #000;
+    position: relative;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--secondary-color);
+}
+
+.award-container::before {
+    content: "DISTINCTION";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    font-family: 'Canopee', 'Georgia', serif;
+    letter-spacing: 1px;
 }
 
 .award-img {
-width: 100%;
-height: auto;
-display: block;
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(20%);
+    transition: all 0.3s ease;
 }
 
-/* Paragraphe avec première lettre spéciale */
+.award-img:hover {
+    filter: sepia(0%);
+    transform: scale(1.02);
+}
+
+/* Paragraphe avec première lettre stylisée */
 .journal-paragraph {
-font-size: 1.1rem;
-line-height: 1.6;
-text-align: justify;
+    position: relative;
+    padding: 0 5px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: justify;
+    font-family: 'Editorial New', 'Georgia', serif;
 }
 
 .journal-first-letter {
-float: left;
-background-color: #000;
-color: #f5f5f5;
-padding: 8px 10px;
-margin-right: 8px;
-margin-top: 4px;
-font-size: 3rem;
-line-height: 1;
-font-weight: bold;
+    float: left;
+    font-family: 'Canopee', 'Georgia', serif;
+    font-size: 3.5rem;
+    line-height: 0.8;
+    padding-right: 5px;
+    color: var(--accent-color);
+    margin-top: 4px;
 }
 
-/* Image avec bordure */
+/* Conteneur de la photo */
 .profile-container {
-width: 100%;
-padding: 5px;
-margin-bottom: 20px;
-display: flex;
-justify-content: center; /* Centrer l'image horizontalement */
-overflow: hidden; /* Masquer ce qui dépasse */
+    position: relative;
+    margin-bottom: 25px;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transform: rotate(-1deg);
+    transition: all 0.3s ease;
+}
+
+.profile-container:hover {
+    transform: rotate(0);
+}
+
+.profile-container::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border: 1px dashed var(--secondary-color);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.profile-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 45%;
+    width: 30px;
+    height: 8px;
+    background-color: rgba(139, 69, 19, 0.3);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .profile-img {
-width: 80%;
-height: auto;
-max-width: 100%; /* S'assurer que l'image ne dépasse pas */
-display: block;
-object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(20%) contrast(110%);
+    transition: all 0.5s ease;
 }
 
-/* Titres empilés dans la colonne droite */
+.profile-img:hover {
+    filter: none;
+}
+
+/* Description photo */
+.profile-caption {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 2px 8px;
+    font-style: italic;
+    font-size: 0.8rem;
+    transform: translateY(50%) rotate(-2deg);
+}
+
+/* Titres empilés */
 .stacked-titles {
-display: flex;
-flex-direction: column;
-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-/* Media queries pour le responsive */
+.stacked-titles div {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.stacked-titles h2 {
+    font-family: 'Canopee', 'Georgia', serif;
+    margin: 0;
+    padding: 5px 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transform: scaleY(1.1);
+}
+
+.stacked-titles .large-title h2 {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+}
+
+.stacked-titles div:not(.large-title) h2 {
+    font-size: 1.6rem;
+}
+
+/* Ornements typographiques */
+.ornament {
+    text-align: center;
+    margin: 15px 0;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.ornament::before,
+.ornament::after {
+    content: "❧";
+    display: inline-block;
+    margin: 0 15px;
+    transform: rotate(90deg);
+}
+
+/* Badge vintage */
+.vintage-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    transform: rotate(15deg);
+    background-color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--accent-color);
+    font-family: 'Canopee', 'Georgia', serif;
+    letter-spacing: 0.5px;
+    z-index: 5;
+    text-transform: uppercase;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations subtiles */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Responsive Design */
 @media (max-width: 991px) {
-.journal-columns {
-flex-direction: column;
-gap: 40px;
+    .journal-portfolio-section {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .journal-columns {
+        flex-direction: column;
+    }
+
+    .vertical-separator {
+        display: none;
+    }
+
+    .right-column {
+        order: -1; /* Affiche la colonne droite en premier sur mobile */
+    }
+
+    .newspaper-title {
+        font-size: 2.5rem;
+    }
+
+    .large-title h1,
+    .stacked-titles .large-title h2 {
+        font-size: 2rem;
+    }
+
+    .profile-container {
+        transform: none;
+        margin: 0 auto 20px;
+        max-width: 400px;
+    }
+
+    .vintage-badge {
+        width: 60px;
+        height: 60px;
+        font-size: 0.6rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .journal-first-letter {
+        font-size: 2.8rem;
+    }
 }
 
-.vertical-separator {
-display: none;
-}
+@media (max-width: 600px) {
+    .newspaper-title {
+        font-size: 2rem;
+    }
 
-.left-column, .right-column {
-width: 100%;
-}
+    .journal-header {
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
 
-.right-column {
-order: -1; /* Affiche la colonne droite en premier sur mobile */
-}
+    .profile-container {
+        padding: 5px;
+    }
 
-.left-column .editorial-title,
-.right-column .editorial-title,
-.right-column .large-title {
-font-size: calc(1.5rem + 2vw);
-}
-
-.journal-first-letter {
-font-size: 2.5rem;
-}
-
-.profile-container {
-max-width: 100%;
-}
+    .left-column, 
+    .right-column {
+        gap: 15px;
+    }
 }
 
 /* Polices personnalisées */
 @font-face {
-font-family: 'Canopee';
-src: url('fonts/Canopee-Regular.woff2') format('woff2');
-font-weight: normal;
-font-style: normal;
-font-display: swap;
+    font-family: 'Canopee';
+    src: url('fonts/Canopee-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-font-family: 'Editorial New';
-src: url('fonts/EditorialNew-Regular.woff2') format('woff2');
-font-weight: normal;
-font-style: normal;
-font-display: swap;
-}
-
-/* Fallback pour les polices non disponibles */
-* {
-font-family: 'Editorial New', 'Times New Roman', serif;
-}
-
-h1, h2, h3, .editorial-title {
-font-family: 'Canopee', 'Times New Roman', serif;
-}
-.regroupe{
-display: flex;
+    font-family: 'Editorial New';
+    src: url('fonts/EditorialNew-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 /*test*/
