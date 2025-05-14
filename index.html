@@ -46,12 +46,7 @@
                             </div>
                             
                             <div class="journal-portfolio-section">
-                                <!-- En-tête de journal -->
-                                <div class="journal-header fade-in">
-                                    <h1 class="newspaper-title"><span>LE PORTFOLIO</span></h1>
-                                    <p class="newspaper-date">Édition Spéciale - Avril 2025</p>
-                                    <p class="newspaper-motto">Développement Web & Design Interactif</p>
-                                </div>
+ 
                         
                                 <!-- Structure en colonnes -->
                                 <div class="journal-columns">
@@ -119,14 +114,13 @@
             </div>
         </div>
         
-        <div class="websites-carousel-container">
-            <button class="carousel-btn prev-btn">&lt;</button>
-            
-            <div class="websites-carousel">
+        <section class="websites-section">
+            <h2>Mes Créations Web</h2>
+            <div class="websites-projects-container">
                 <!-- Projet 1 -->
-                <div class="website-item" onclick="navigateToPage('page2.html')">
+                <div class="website-item" data-url="page2.html">
                     <div class="website-image">
-                        <img src="src/moi.JPG" alt="Projet 1">
+                        <img src="src/pokedex3.png" alt="Projet 1">
                     </div>
                     <div class="website-info">
                         <h3 class="website-title">Projet Pokedex</h3>
@@ -135,20 +129,20 @@
                 </div>
                 
                 <!-- Projet 2 -->
-                <div class="website-item" onclick="navigateToPage('page2.html')">
+                <div class="website-item" data-url="page3.html">
                     <div class="website-image">
-                        <img src="src/moi.JPG" alt="Projet 2">
+                        <img src="src/resultat_anglais.png" alt="Projet 2">
                     </div>
                     <div class="website-info">
                         <h3 class="website-title">OX Fest Festival</h3>
-                        <p class="website-description">Nous deviosn réaliser un site pour un festival sur la femme.</p>
+                        <p class="website-description">Nous devions réaliser un site pour un festival sur la femme.</p>
                     </div>
                 </div>
                 
                 <!-- Projet 3 -->
-                <div class="website-item" onclick="navigateToPage('page2.html')">
+                <div class="website-item" data-page="page4.html">
                     <div class="website-image">
-                        <img src="src/moi.JPG" alt="Projet 3">
+                        <img src="src/sitemarathon.png" alt="Projet 3">
                     </div>
                     <div class="website-info">
                         <h3 class="website-title">Site marathon</h3>
@@ -156,9 +150,7 @@
                     </div>
                 </div>
             </div>
-            
-            <button class="carousel-btn next-btn">&gt;</button>
-        </div>
+        </section>
     </div>
     <div class="regroupe">
         <div class="transparent-title-container">
@@ -168,114 +160,38 @@
         </div>
     </div>
 </div>
-<div class="journal-card-section">
+
     
-    <div class="journal-card-container">
-        <!-- Carte 1 -->
-        <div class="journal-card" onclick="navigateToPage('page2.html')">
-            <div class="journal-card-inner">
-                <div class="journal-card-content">
-                    <div class="journal-card-title">Maquette Dashboard</div>
-                    <div class="journal-card-body">
-                        <div class="journal-card-img">
-                            <img src="src/moi.JPG" alt="Projet Image">
-                        </div>
-                        <div class="journal-card-text">
-                            "J'ai pu faire une maquette pour un dashboard pour les professeurs"
-                        </div>
-                    </div>
-                    <div class="journal-card-author">
-                        <div class="author-img">
-                            <img src="src/moi.JPG" alt="Author">
-                        </div>
-                        <div class="author-info">
-                            <div class="author-name">Sam Day</div>
-                            <div class="author-title">Creative Director</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="journal-content">
         
-        <!-- Carte 2 -->
-        <div class="journal-card" onclick="navigateToPage('page2.html')">
-            <div class="journal-card-inner">
-                <div class="journal-card-content">
-                    <div class="journal-card-title">SAE entrepreunariat</div>
-                    <div class="journal-card-body">
-                        <div class="journal-card-img">
-                            <img src="src/moi.JPG" alt="Projet Image">
-                        </div>
-                        <div class="journal-card-text">
-                            "J'ai pu réaliser une application avec des "
-                        </div>
+        <!-- Section des projets de sites web -->
+        <section class="websites-section fade-in">
+            <h2>Mes Créations</h2>
+            
+            <div class="websites-projects-container">
+                <!-- Projet 1 -->
+                <div class="website-item" data-url="page5.html">
+                    <div class="website-image">
+                        <img src="src/maquette_lagiefka3.png" alt="Maquette Dashboard">
                     </div>
-                    <div class="journal-card-author">
-                        <div class="author-img">
-                            <img src="src/moi.JPG" alt="Author">
-                        </div>
-                        <div class="author-info">
-                            <div class="author-name">Sofia Papadopoulou</div>
-                            <div class="author-title">Designer & Art Director</div>
-                        </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Maquette Dashboard</h3>
+                        <p class="website-description">J'ai pu créer une maquette pour un dashboard destiné aux professeurs, alliant fonctionnalité et esthétique.</p>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="website-item" data-url="page6.html">
+                    <div class="website-image">
+                        <img src="src/SEA_management2.png" alt="SAE Entrepreneuriat">
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">SAE Entrepreneuriat</h3>
+                        <p class="website-description">J'ai réalisé une application innovante dans le cadre d'un projet entrepreneurial.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Carte 3 -->
-        <div class="journal-card" onclick="navigateToPage('page2.html')">
-            <div class="journal-card-inner">
-                <div class="journal-card-content">
-                    <div class="journal-card-title">Creative Development</div>
-                    <div class="journal-card-body">
-                        <div class="journal-card-img">
-                            <img src="src/moi.JPG" alt="Projet Image">
-                        </div>
-                        <div class="journal-card-text">
-                            "High-skilled designer with unique experiences with each project. His signature is more visible in everything he launches."
-                        </div>
-                    </div>
-                    <div class="journal-card-author">
-                        <div class="author-img">
-                            <img src="src/moi.JPG" alt="Author">
-                        </div>
-                        <div class="author-info">
-                            <div class="author-name">Bruno Arizio</div>
-                            <div class="author-title">Creative Director</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Carte 4 -->
-        <div class="journal-card" onclick="navigateToPage('page2.html')">
-            <div class="journal-card-inner">
-                <div class="journal-card-content">
-                    <div class="journal-card-title">Interactive Design</div>
-                    <div class="journal-card-body">
-                        <div class="journal-card-img">
-                            <img src="src/moi.JPG" alt="Projet Image">
-                        </div>
-                        <div class="journal-card-text">
-                            "A very promising Creative Director and Interactive Designer given her natural aesthetic taste and innate instinct for functionality"
-                        </div>
-                    </div>
-                    <div class="journal-card-author">
-                        <div class="author-img">
-                            <img src="src/moi.JPG" alt="Author">
-                        </div>
-                        <div class="author-info">
-                            <div class="author-name">Enea Rossi</div>
-                            <div class="author-title">Co-Founder at Adoratorio</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </section>
 <!-- Section VR Projects -->
 <div class="vr-projects-section">
     <div class="vr-projects-title">
@@ -288,11 +204,11 @@
     
     <div class="vr-projects-container">
         <!-- Projet VR 1 -->
-        <div class="vr-project" onclick="navigateToPage('page2.html')">
+        <div class="vr-project" onclick="navigateToPage('page7.html')">
             <div class="vr-project-inner">
                 <div class="vr-project-content">
                     <div class="vr-project-header">
-                        <h3 class="vr-project-title">L'Exploration Cosmique</h3>
+                        <h3 class="vr-project-title">Village Unity</h3>
                         <div class="vr-project-date">Mars 2025</div>
                     </div>
                     
@@ -316,11 +232,11 @@
         </div>
         
         <!-- Projet VR 2 -->
-        <div class="vr-project" onclick="navigateToPage('page2.html')">
+        <div class="vr-project" onclick="navigateToPage('page8.html')">
             <div class="vr-project-inner">
                 <div class="vr-project-content">
                     <div class="vr-project-header">
-                        <h3 class="vr-project-title">Mystère Archéologique</h3>
+                        <h3 class="vr-project-title">Jeu 3d Unity</h3>
                         <div class="vr-project-date">Décembre 2024</div>
                     </div>
                     
@@ -343,33 +259,7 @@
             </div>
         </div>
         
-        <!-- Projet VR 3 -->
-        <div class="vr-project" onclick="navigateToPage('page2.html')">
-            <div class="vr-project-inner">
-                <div class="vr-project-content">
-                    <div class="vr-project-header">
-                        <h3 class="vr-project-title">Voyage Musical</h3>
-                        <div class="vr-project-date">Octobre 2024</div>
-                    </div>
-                    
-                    <div class="vr-project-img-container">
-                        <img src="src/moi.JPG" alt="Projet VR Musical" class="vr-project-img">
-                        <div class="vr-project-overlay">
-                            <span>Découvrir</span>
-                        </div>
-                    </div>
-                    
-                    <div class="vr-project-description">
-                        <p class="vr-project-text">Expérience sensorielle où les mouvements du joueur créent de la musique dans un environnement visuel réactif, transformant le corps en instrument virtuel.</p>
-                        <div class="vr-project-tags">
-                            <span class="vr-tag">WebXR</span>
-                            <span class="vr-tag">Three.js</span>
-                            <span class="vr-tag">Tone.js</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
                             <div>
@@ -382,9 +272,6 @@
             </div>
         </div>
         
-        <div class="navigation">
-            Menu de navigation (à développer)
-        </div>
     </div>
 
     <script>
@@ -467,14 +354,13 @@
                     journal.classList.add('turning');
                     
                     setTimeout(function() {
-                        window.location.href = 'page2.html';
+                        window.location.href = 'page9.html';
                     }, 700); 
                 }, 1000);
             });
         });
 
-        // La fonction navigateToPage est déjà dans votre code initial
-// Mais je l'inclus ici pour référence
+
 
 function navigateToPage(pageUrl) {
     // Récupérer la div journal principale
@@ -528,7 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Fonctions existantes...
             
             // Ajoutez ce code pour le carrousel
             const carousel = document.querySelector('.websites-carousel');
@@ -616,6 +501,222 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Animation d'apparition progressive des projets
+    const projectItems = document.querySelectorAll('.website-item');
+    
+    projectItems.forEach((item, index) => {
+        // Définir l'opacity à 0 et translateY initial
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(40px)';
+        
+        // Ajouter un délai pour chaque projet et les faire apparaître progressivement
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        }, 300 + (index * 200));
+        
+        // Ajouter l'événement de clic pour la navigation
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageUrl = this.getAttribute('data-url') || 'page2.html';
+            
+            // Ajouter un subtil effet de clic sans l'animation lourde
+            this.style.transform = 'scale(0.98)';
+            this.style.opacity = '0.9';
+            this.style.transition = 'all 0.2s ease';
+            
+            // Effet léger de lumière magique
+            createSubtleMagicalLight(e);
+            
+            // Naviguer directement avec l'animation du journal
+            setTimeout(() => {
+                navigateToPage(pageUrl);
+            }, 300);
+        });
+    });
+    
+    // Effet de lumière magique léger au clic
+    function createSubtleMagicalLight(e) {
+        const light = document.createElement('div');
+        light.classList.add('magical-light');
+        
+        // Obtenir la position du clic
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        // Positionner l'élément de lumière
+        light.style.cssText = `
+            position: fixed;
+            top: ${y}px;
+            left: ${x}px;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        `;
+        
+        document.body.appendChild(light);
+        
+        // Animation légère de la lumière
+        setTimeout(() => {
+            light.style.width = '150px';
+            light.style.height = '150px';
+            light.style.opacity = '0';
+            light.style.transition = 'all 0.4s ease';
+        }, 10);
+        
+        // Supprimer l'élément une fois l'animation terminée
+        setTimeout(() => {
+            document.body.removeChild(light);
+        }, 400);
+    }
+    
+    // Effet de papier ancien pour les projets
+    projectItems.forEach(item => {
+        // Ajouter un effet de texture aléatoire très subtil
+        const randomRotation = Math.random() * 1 - 0.5; // Entre -0.5 et 0.5 degré
+        item.style.transform = `rotate(${randomRotation}deg)`;
+        
+        // Ajouter un effet de survol pour les images
+        const image = item.querySelector('.website-image img');
+        if (image) {
+            item.addEventListener('mouseenter', function() {
+                image.style.filter = 'sepia(10%) contrast(110%) brightness(105%)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                image.style.filter = 'sepia(20%) contrast(105%)';
+            });
+        }
+    });
+    
+    // Ajouter la classe CSS pour le style
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-3px); }
+                100% { transform: translateY(0px); }
+            }
+            
+            .magical-light {
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                mix-blend-mode: screen;
+            }
+            
+            .floating-item {
+                animation: float 5s ease-in-out infinite;
+            }
+        </style>
+    `);
+    
+    // Effet de "flottement" subtil pour les projets
+    projectItems.forEach((item, index) => {
+        item.classList.add('floating-item');
+        // Décaler l'animation pour chaque projet
+        item.style.animationDelay = `${index * 0.7}s`;
+    });
+});
+
+// Conserver la fonction existante pour la navigation
+function navigateToPage(pageUrl) {
+    // Récupérer la div journal principale
+    const journal = document.querySelector('.journal');
+    
+    // Étape 1: Rétrécir le journal
+    journal.classList.remove('zoomed');
+    journal.classList.add('shrink');
+    
+    // Étape 2: Faire tourner le journal sur place jusqu'à 90 degrés
+    setTimeout(function() {
+        journal.classList.add('turning');
+        
+        // Étape 3: Rediriger vers la page suivante après que la rotation à 90° soit terminée
+        setTimeout(function() {
+            window.location.href = pageUrl;
+        }, 700); // durée ajustée à la vitesse de rotation
+    }, 1000);
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // Fonction de navigation personnalisée pour le retour à la page d'accueil
+    function navigateBackToHome(pageUrl) {
+        // Récupérer la div journal principale
+        const journal = document.querySelector('.journal');
+        
+        // Étape 1: Commencer par tourner à 90 degrés (sur la tranche)
+        journal.classList.add('turning');
+        journal.style.transform = 'rotateY(90deg)';
+        
+        setTimeout(function() {
+            // Étape 2: Faire tourner vers la gauche et agrandir
+            journal.classList.remove('turning');
+            journal.classList.remove('shrink');
+            journal.classList.add('zoomed');
+            journal.style.transform = 'rotateY(0deg)';
+            
+            // Rediriger vers la page d'accueil si nécessaire
+            if (pageUrl) {
+                setTimeout(function() {
+                    window.location.href = pageUrl;
+                }, 700);
+            }
+        }, 700);
+    }
+
+    // Ajouter un écouteur d'événements pour la navigation de retour
+    window.addEventListener('pageshow', function(event) {
+        // Vérifier si c'est un retour en arrière ou un rechargement
+        if (event.persisted || performance.navigation.type === 2) {
+            const journal = document.querySelector('.journal');
+            
+            // Réinitialiser le journal à son état initial
+            journal.classList.remove('turning', 'shrink');
+            journal.classList.add('zoomed');
+            journal.style.transform = 'rotateY(0deg)';
+        }
+    });
+
+    // Modifier la fonction de navigation existante pour inclure l'option de retour
+    window.navigateToPage = function(pageUrl, isReturn = false) {
+        const journal = document.querySelector('.journal');
+        
+        if (isReturn) {
+            // Utiliser l'animation de retour personnalisée
+            navigateBackToHome(pageUrl);
+        } else {
+            // Conserver l'animation de navigation originale
+            journal.classList.remove('zoomed');
+            journal.classList.add('shrink');
+            
+            setTimeout(function() {
+                journal.classList.add('turning');
+                
+                setTimeout(function() {
+                    window.location.href = pageUrl;
+                }, 700);
+            }, 1000);
+        }
+    }
+
+    // Ajouter des écouteurs d'événements pour les boutons de navigation
+    const navigationButtons = document.querySelectorAll('[data-page]');
+    navigationButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const pageUrl = this.getAttribute('data-page');
+            const isReturn = this.hasAttribute('data-return');
+            
+            navigateToPage(pageUrl, isReturn);
+        });
+    });
+});
     </script>
 </body>
 </html>

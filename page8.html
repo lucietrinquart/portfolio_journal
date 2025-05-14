@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucie Trinquart - Projet OX Fest Festival</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @font-face {
+            font-family: 'OldNewspaper';
+            src: url('https://fonts.cdnfonts.com/css/old-newspaper') format('woff2');
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f3f0e6;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .journal-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .journal {
+            width: 80%;
+            max-width: 900px;
+            min-height: 90vh;
+            background-color: #f5f5f5;
+            transform-origin: center center;
+            transform: rotateY(-90deg); /* Commence à -90 degrés */
+            transition: transform 0.7s ease-in-out;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .journal-frame {
+            width: 100%;
+            min-height: 100%;
+            padding: 30px;
+            position: relative;
+            border: 1px solid #8a7e66;
+            background-image: url('data:image/png;base64,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');
+            background-blend-mode: multiply;
+        }
+        
+        /* Cadre décoratif avec bordures en CSS plutôt qu'avec pseudo-éléments */
+        .inner-frame {
+            width: 100%;
+            min-height: 100%;
+            border: 2px dotted #8a7e66;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .inner-content {
+            width: 100%;
+            min-height: 100%;
+            border: 1px solid #8a7e66;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .journal.animated {
+            transform: rotateY(0deg);
+        }
+        
+        .journal.zoomed {
+            width: 95%;
+            max-width: 1200px;
+            min-height: 100vh;
+            transform: scale(1);
+            transition: all 1s ease-in-out;
+        }
+        
+        .journal.shrink {
+            width: 80%;
+            max-width: 900px;
+            min-height: 90vh;
+            transition: all 1s ease-in-out;
+        }
+        
+        .journal.turning {
+            transform: rotateY(-90deg);
+            transition: transform 0.7s ease-in-out;
+        }
+        
+        .journal-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .journal-header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .journal-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+        
+        .journal-subtitle {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .divider {
+            width: 80%;
+            margin: 10px auto;
+            height: 1px;
+            background-color: #333;
+        }
+        
+        .journal-date {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .newspaper-headline {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        .navigation {
+            display: none;
+            padding: 20px;
+            background-color: rgba(245, 245, 245, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        
+        .navigation.visible {
+            display: block;
+        }
+        
+        .content {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            padding: 20px 0;
+        }
+        
+        .content.visible {
+            opacity: 1;
+        }
+        
+        .two-columns {
+            column-count: 2;
+            column-gap: 30px;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .first-letter {
+            float: left;
+            font-size: 75px;
+            line-height: 60px;
+            padding-right: 8px;
+            padding-top: 4px;
+        }
+        
+        .prev-button, .next-button {
+            display: inline-block;
+            margin: 30px 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .prev-button:hover, .next-button:hover {
+            background-color: #555;
+        }
+        
+        .buttons-container {
+            text-align: center;
+        }
+        
+        .corner-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+        }
+        
+        .top-left {
+            top: 5px;
+            left: 5px;
+        }
+        
+        .top-right {
+            top: 5px;
+            right: 5px;
+            transform: rotate(90deg);
+        }
+        
+        .bottom-left {
+            bottom: 5px;
+            left: 5px;
+            transform: rotate(-90deg);
+        }
+        
+        .bottom-right {
+            bottom: 5px;
+            right: 5px;
+            transform: rotate(180deg);
+        }
+        
+        .article-section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .article-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            border-bottom: 1px solid #8a7e66;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .newspaper-subheadline {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .project-image {
+            float: right;
+            margin: 0 0 20px 20px;
+            max-width: 300px;
+            border: 1px solid #333;
+            padding: 5px;
+            background-color: #f5f5f5;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            transform: rotate(1deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-image:hover {
+            transform: rotate(-1deg) scale(1.02);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .stamp {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 150px;
+            height: 150px;
+            transform: rotate(15deg);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .stamp-text {
+            border: 5px solid #8a7e66;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            color: #8a7e66;
+            transform: rotate(-15deg);
+        }
+        
+        .project-conclusion {
+            font-style: italic;
+            text-align: center;
+            max-width: 80%;
+            margin: 30px auto;
+            padding: 15px;
+            border-top: 1px solid #8a7e66;
+            border-bottom: 1px solid #8a7e66;
+        }
+        
+        .ink-splatter {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .splatter1 {
+            top: 150px;
+            left: 50px;
+            transform: rotate(45deg);
+        }
+        
+        .splatter2 {
+            bottom: 200px;
+            right: 70px;
+            transform: rotate(-30deg);
+        }
+        
+        .interactive-note {
+            position: absolute;
+            width: 150px;
+            padding: 10px;
+            background-color: #fff9c4;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            font-family: cursive;
+            font-size: 14px;
+            z-index: 10;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .note1 {
+            top: 300px;
+            right: 50px;
+        }
+        
+        .note2 {
+            bottom: 150px;
+            left: 30px;
+            transform: rotate(5deg);
+        }
+        
+        .interactive-note:hover {
+            transform: rotate(0) scale(1.05);
+            z-index: 20;
+        }
+        
+        .inspiration-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .inspiration-card {
+            width: 45%;
+            min-width: 280px;
+            border: 1px solid #8a7e66;
+            padding: 15px;
+            background-color: #f8f5f0;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .inspiration-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .inspiration-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #8a7e66;
+            margin-bottom: 10px;
+        }
+        
+        .evolution-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .evolution-item {
+            width: 45%;
+            min-width: 280px;
+            border: 1px solid #8a7e66;
+            padding: 15px;
+            background-color: #f8f5f0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .evolution-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .evolution-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #8a7e66;
+            margin-bottom: 10px;
+        }
+        
+        .evolution-arrow {
+            position: absolute;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: #8a7e66;
+            z-index: 5;
+        }
+        
+        .project-feature {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background-color: #f8f5f0;
+            border-left: 3px solid #8a7e66;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            flex: 1 1 45%;
+            min-width: 250px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-box {
+            border: 2px dashed #8a7e66;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .highlight-title {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background-color: #f5f5f5;
+            padding: 0 10px;
+            font-weight: bold;
+            color: #8a7e66;
+        }
+        
+        .magical-effect {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: sparkle 4s infinite;
+        }
+        
+        .magical-effect1 {
+            top: 100px;
+            left: 50px;
+            animation-delay: 0s;
+        }
+        
+        .magical-effect2 {
+            top: 300px;
+            right: 100px;
+            animation-delay: 1s;
+        }
+        
+        .magical-effect3 {
+            bottom: 150px;
+            left: 150px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+        
+        .key-points {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .key-points li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .key-points li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8a7e66;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                column-count: 1;
+            }
+            
+            .journal {
+                width: 95%;
+            }
+            
+            .project-image {
+                float: none;
+                margin: 0 auto 20px;
+                display: block;
+                max-width: 100%;
+            }
+            
+            .inspiration-container, .evolution-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .inspiration-card, .evolution-item {
+                width: 100%;
+            }
+            
+            .evolution-arrow {
+                right: 50%;
+                top: auto;
+                bottom: -25px;
+                transform: translateX(50%) rotate(90deg);
+            }
+            
+            .stamp {
+                width: 100px;
+                height: 100px;
+                top: 30px;
+                right: 30px;
+            }
+            
+            .interactive-note {
+                position: relative;
+                margin: 20px auto;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+            }
+            
+            .newspaper-headline {
+                font-size: 28px;
+            }
+            
+            .journal-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucie Trinquart - Projet OX Fest Festival</title>
+    <style>
+        /* Votre style CSS existant est déjà défini dans la pièce jointe */
+    </style>
+</head>
+<body>
+    <div class="journal-container">
+        <div class="journal">
+            <div class="journal-frame">
+                <div class="inner-frame">
+                    <div class="inner-content">
+                        <!-- Décorations des coins -->
+                        <svg class="corner-decoration top-left" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        <svg class="corner-decoration top-right" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        <svg class="corner-decoration bottom-left" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        <svg class="corner-decoration bottom-right" viewBox="0 0 30 30">
+                            <path d="M1,15 L15,1 L29,1 L29,15 L15,29 L1,29 Z" fill="none" stroke="#8a7e66" stroke-width="1" />
+                        </svg>
+                        
+                        <!-- Éléments décoratifs -->
+                        <div class="stamp">
+                            <div class="stamp-text">Projet créatif<br>2024</div>
+                        </div>
+                        
+                        <svg class="ink-splatter splatter1" viewBox="0 0 100 100">
+                            <path d="M50,0 C60,20 80,30 90,40 C95,60 80,80 60,90 C40,95 20,80 10,60 C5,40 20,20 40,10 C45,5 40,10 50,0 Z" fill="#000" />
+                        </svg>
+                        
+                        <svg class="ink-splatter splatter2" viewBox="0 0 100 100">
+                            <path d="M30,10 C50,5 70,15 85,35 C90,55 85,75 65,90 C45,95 25,85 10,65 C5,45 10,25 30,10 Z" fill="#000" />
+                        </svg>
+                        
+                        <!-- Effets magiques -->
+                        <div class="magical-effect magical-effect1"></div>
+                        <div class="magical-effect magical-effect2"></div>
+                        <div class="magical-effect magical-effect3"></div>
+                        
+                        <div class="journal-content">
+                            <div class="journal-header">
+                                <h1 class="journal-title">La Gazette de Lucie</h1>
+                                <div class="journal-subtitle">Chronique des projets remarquables</div>
+                                <div class="divider"></div>
+                                <p class="journal-date">Édition du <span id="current-date"></span></p>
+                            </div>
+                            
+                            <div class="content">
+                                <h2 class="newspaper-headline">3D UNITY VR: UN JEU IMMERSIF</h2>
+                                <p class="newspaper-subheadline">Un projet créatif de conception du jeu avec un casque VR</p>
+                                
+                                <!-- Section 1: Résumé du projet -->
+                                <div class="article-section">
+                                    <h3 class="article-title">Le Projet en Bref</h3>
+                                    <div class="two-columns">
+                                        <p><span class="first-letter">J</span>'ai pu concevoir un jeu VR. Nous devions être en groupe de 2. Mon coéquipier s'occuper principalement de toute la partie graphique. Pour ma part j'ai plus été du côté de la programmation. J'ai adoré ce projet. Nous devions créer une maison</p>
+                                        <p>territorial. Nous devions faire un certain nombre de tâches comme se lver, faire à manger, regarder les informations etc. J'ai pu apprendre à utiliser une tehcnologie en plein développement. </p>
+                                    </div>
+                                    
+                                    <div class="highlight-box">
+                                        <span class="highlight-title">Points clés du projet</span>
+                                        <ul class="key-points">
+                                            <li>Application dans un casque VR</li>
+                                            <li>Jeu du thème maison territorial</li>
+                                            <li>Utilisation de Unity et C#</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="interactive-note note1">
+                                        Premier jeu Unity avec un casque VR!
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 2: Inspirations -->
+                                <div class="article-section">
+                                    <h3 class="article-title">Mes difficultés</h3>
+                                    <p>Pour créer une expérience véritablement unique, je me suis confrontée à certaines difficultés.</p>
+                                    
+                                    <div class="inspiration-container">
+                                        <div class="inspiration-card">
+                                            <img src="src/meta-quest-3.webp" alt="Inspiration 1" class="inspiration-image">
+                                            <h4>Utilisation de la VR</h4>
+                                            <p>2 problèmes. Le premier était que ce n'était pas encore optimal pour utiliser la VR u que c'est une nouvelle technologie. La deuxième était que je n'avais encore jamais utilisé.</p>
+                                        </div>
+                                        
+                                        <div class="inspiration-card">
+                                            <img src="src/jeu_sae3.png" alt="Inspiration 2" class="inspiration-image">
+                                            <h4>La maison territorial</h4>
+                                            <p>Nous devions adapter les missions par rapport à notre type de main. Nous avions tout le temps peur de ne pas être dans le thème de la maison.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-feature">
+                                        <div class="feature-item">
+                                            <div class="feature-title">Recherche Approfondie</div>
+                                            <p>Analyse des thèmes de la maison territorial</p>
+                                        </div>
+                                        
+                                        <div class="feature-item">
+                                            <div class="feature-title">Utilisation de la VR</div>
+                                            <p>Collaboration avec la VR et découverte de cette technologie</p>
+                                        </div>
+                                        
+                                        <div class="feature-item">
+                                            <div class="feature-title">Expérience Immersive</div>
+                                            <p>Nous avons pu découvrir peu à peu notre application prendre fore dans le casque</p>
+                                        </div>
+                                        
+                                        <div class="feature-item">
+                                            <div class="feature-title">Navigation Intuitive</div>
+                                            <p>Tentative de navigation fluide et accessible pour tous les utilisateurs</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="interactive-note note2">
+                                        Les couleurs et l'ambiance sont essentielles pour transmettre une bonne ambiance
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 3: Évolution du projet -->
+                                <div class="article-section">
+                                    <h3 class="article-title">L'Évolution du Projet</h3>
+                                    <p>Le processus créatif a connu plusieurs phases importantes, chacune m'aidant à affiner ma vision et à perfectionner l'expérience finale.</p>
+                                    
+                                    <div class="evolution-container">
+                                        <div class="evolution-item">
+                                            <img src="src/jeu_vr1.png" alt="Première version" class="evolution-image">
+                                            <h4>Première application</h4>
+                                            <p>Nous avions fait une application avant en VR pour mieux comprendre l'utilisation avant de faire une application plus complexe. J'ai adoré faire cette application car je trouve que le jeu de lumière et bien faire cependant les fonctionnalité ne sont pas très compréhensive et pas très poussé.</p>
+                                            <div class="evolution-arrow">→</div>
+                                        </div>
+                                        
+                                        <div class="evolution-item">
+                                            <img src="src/jeu_sae.png" alt="Version finale" class="evolution-image">
+                                            <h4>Version Finale</h4>
+                                            <p>Je trouve que l'application est plus immersive et explicite. La gestion des lumières a eu quelques problèmes par la suite je trouve l'application beaucoup plus complexe.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-conclusion">
+                                        <p>Ce projet m'a permis de développer mes compétences en design web et de pousser ma créativité au-delà de mes limites habituelles. Le résultat final est une maquette interactive, responsive et visuellement captivante qui représente fidèlement la vision du festival OX Fest.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="buttons-container">
+                                    <button class="prev-button" id="prevPage">Page précédente</button>
+                                    <button class="next-button" id="nextPage">Page suivante</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Afficher la date actuelle
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date();
+            document.getElementById('current-date').textContent = date.toLocaleDateString('fr-FR', options);
+            
+            // Animation d'entrée du journal
+            setTimeout(function() {
+                document.querySelector('.journal').classList.add('animated');
+            }, 300);
+            
+            // Afficher le contenu avec un délai
+            setTimeout(function() {
+                document.querySelector('.content').classList.add('visible');
+            }, 1000);
+            
+            // Gestion des boutons de navigation
+            document.getElementById('prevPage').addEventListener('click', function() {
+                // Animation de sortie
+                document.querySelector('.journal').classList.add('turning');
+                setTimeout(function() {
+                    // Redirection vers la page précédente
+                    window.history.back();
+                }, 700);
+            });
+            
+            document.getElementById('nextPage').addEventListener('click', function() {
+                // Animation de sortie
+                document.querySelector('.journal').classList.add('turning');
+                setTimeout(function() {
+                    // Redirection vers la page suivante (à remplacer par l'URL réelle)
+                    window.location.href = "page-suivante.html";
+                }, 700);
+            });
+            
+            // Effet de note interactive
+            const notes = document.querySelectorAll('.interactive-note');
+            notes.forEach(note => {
+                note.addEventListener('click', function() {
+                    this.style.transform = this.style.transform === 'scale(1.2)' ? '' : 'scale(1.2)';
+                });
+            });
+            
+            // Détecter le défilement pour les effets
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                const journal = document.querySelector('.journal');
+                
+                // Effet de zoom subtil au défilement
+                if (scrollPosition > 100) {
+                    journal.classList.add('zoomed');
+                    journal.classList.remove('shrink');
+                } else {
+                    journal.classList.add('shrink');
+                    journal.classList.remove('zoomed');
+                }
+                
+                // Animation des effets magiques
+                const magicalEffects = document.querySelectorAll('.magical-effect');
+                magicalEffects.forEach((effect, index) => {
+                    effect.style.opacity = (Math.sin(scrollPosition / 300 + index) + 1) / 2;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

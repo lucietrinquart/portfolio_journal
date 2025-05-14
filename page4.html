@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucie Trinquart - Projet CLEE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @font-face {
+            font-family: 'OldNewspaper';
+            src: url('https://fonts.cdnfonts.com/css/old-newspaper') format('woff2');
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f3f0e6;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .journal-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .journal {
+            width: 80%;
+            max-width: 900px;
+            min-height: 90vh;
+            background-color: #f5f5f5;
+            transform-origin: center center;
+            transform: rotateY(-90deg); /* Commence à -90 degrés */
+            transition: transform 0.7s ease-in-out;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .journal-frame {
+            width: 100%;
+            min-height: 100%;
+            padding: 30px;
+            position: relative;
+            border: 1px solid #8a7e66;
+            background-image: url('data:image/png;base64,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');
+            background-blend-mode: multiply;
+        }
+        
+        /* Cadre décoratif avec bordures en CSS plutôt qu'avec pseudo-éléments */
+        .inner-frame {
+            width: 100%;
+            min-height: 100%;
+            border: 2px dotted #8a7e66;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .inner-content {
+            width: 100%;
+            min-height: 100%;
+            border: 1px solid #8a7e66;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .journal.animated {
+            transform: rotateY(0deg);
+        }
+        
+        .journal.zoomed {
+            width: 95%;
+            max-width: 1200px;
+            min-height: 100vh;
+            transform: scale(1);
+            transition: all 1s ease-in-out;
+        }
+        
+        .journal.shrink {
+            width: 80%;
+            max-width: 900px;
+            min-height: 90vh;
+            transition: all 1s ease-in-out;
+        }
+        
+        .journal.turning {
+            transform: rotateY(-90deg);
+            transition: transform 0.7s ease-in-out;
+        }
+        
+        .journal-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .journal-header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .journal-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+        
+        .journal-subtitle {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .divider {
+            width: 80%;
+            margin: 10px auto;
+            height: 1px;
+            background-color: #333;
+        }
+        
+        .journal-date {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .newspaper-headline {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        .navigation {
+            display: none;
+            padding: 20px;
+            background-color: rgba(245, 245, 245, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        
+        .navigation.visible {
+            display: block;
+        }
+        
+        .content {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            padding: 20px 0;
+        }
+        
+        .content.visible {
+            opacity: 1;
+        }
+        
+        .two-columns {
+            column-count: 2;
+            column-gap: 30px;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .first-letter {
+            float: left;
+            font-size: 75px;
+            line-height: 60px;
+            padding-right: 8px;
+            padding-top: 4px;
+        }
+        
+        .prev-button, .next-button {
+            display: inline-block;
+            margin: 30px 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .prev-button:hover, .next-button:hover {
+            background-color: #555;
+        }
+        
+        .buttons-container {
+            text-align: center;
+        }
+        
+        .corner-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+        }
+        
+        .top-left {
+            top: 5px;
+            left: 5px;
+        }
+        
+        .top-right {
+            top: 5px;
+            right: 5px;
+            transform: rotate(90deg);
+        }
+        
+        .bottom-left {
+            bottom: 5px;
+            left: 5px;
+            transform: rotate(-90deg);
+        }
+        
+        .bottom-right {
+            bottom: 5px;
+            right: 5px;
+            transform: rotate(180deg);
+        }
+        
+        .article-section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .article-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            border-bottom: 1px solid #8a7e66;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .newspaper-subheadline {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .project-image {
+            float: right;
+            margin: 0 0 20px 20px;
+            max-width: 300px;
+            border: 1px solid #333;
+            padding: 5px;
+            background-color: #f5f5f5;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            transform: rotate(1deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-image:hover {
+            transform: rotate(-1deg) scale(1.02);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .skill-meter {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .skill-name {
+            width: 120px;
+            font-weight: bold;
+        }
+        
+        .skill-bar {
+            flex-grow: 1;
+            height: 15px;
+            background-color: #ddd;
+            position: relative;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background-color: #8a7e66;
+        }
+        
+        .skill-value {
+            margin-left: 10px;
+            width: 30px;
+            text-align: right;
+        }
+        
+        .difficulty-item {
+            background-color: #f8f5f0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid #8a7e66;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .difficulty-item::before {
+            content: '✎';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #8a7e66;
+            background-color: #f3f0e6;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .difficulty-icon {
+            margin-right: 15px;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .project-comparison {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .project-card {
+            flex: 1;
+            border: 1px solid #8a7e66;
+            padding: 15px;
+            background-color: #f8f5f0;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-card-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border-bottom: 1px dashed #8a7e66;
+            padding-bottom: 5px;
+        }
+        
+        .project-card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 1px solid #8a7e66;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+        
+        .mySlides {
+            display: none;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+        
+        .text {
+            color: #333;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(245, 245, 245, 0.7);
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .active, .dot:hover {
+            background-color: #8a7e66;
+        }
+        
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+        
+        .stamp {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 150px;
+            height: 150px;
+            transform: rotate(15deg);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .stamp-text {
+            border: 5px solid #8a7e66;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            color: #8a7e66;
+            transform: rotate(-15deg);
+        }
+        
+        .project-conclusion {
+            font-style: italic;
+            text-align: center;
+            max-width: 80%;
+            margin: 30px auto;
+            padding: 15px;
+            border-top: 1px solid #8a7e66;
+            border-bottom: 1px solid #8a7e66;
+        }
+        
+        .ink-splatter {
+            position: absolute;
+            width: a;
+            height: 100px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .splatter1 {
+            top: 150px;
+            left: 50px;
+            transform: rotate(45deg);
+        }
+        
+        .splatter2 {
+            bottom: 200px;
+            right: 70px;
+            transform: rotate(-30deg);
+        }
+        
+        .interactive-note {
+            position: absolute;
+            width: 150px;
+            padding: 10px;
+            background-color: #fff9c4;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            font-family: cursive;
+            font-size: 14px;
+            z-index: 10;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .note1 {
+            top: 500px;
+            right: 50px;
+        }
+        
+        .note2 {
+            bottom: 150px;
+            left: 30px;
+            transform: rotate(5deg);
+        }
+        
+        .interactive-note:hover {
+            transform: rotate(0) scale(1.05);
+            z-index: 20;
+        }
+
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .feature-item:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #8a7e66;
+            font-weight: bold;
+        }
+
+        .comparison-images {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-image {
+            flex: 1;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-image img {
+            width: 100%;
+            border: 1px solid #8a7e66;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .comparison-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .difficulty-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .difficulty-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: #f8f5f0;
+            border: 1px solid #8a7e66;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .difficulty-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #8a7e66;
+            padding-bottom: 5px;
+        }
+
+        .difficulty-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #8a7e66;
+        }
+
+        .difficulty-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .evolution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .evolution-item {
+            background-color: #f8f5f0;
+            border: 1px solid #8a7e66;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .evolution-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .evolution-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #8a7e66;
+            padding-bottom: 5px;
+        }
+
+        .evolution-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .evolution-image-container {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .evolution-image {
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #8a7e66;
+            padding: 5px;
+            background-color: #f5f5f5;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .evolution-image:hover {
+            transform: scale(1.05);
+        }
+
+        .evolution-arrow {
+            font-size: 24px;
+            color: #8a7e66;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                column-count: 1;
+            }
+            
+            .journal {
+                width: 95%;
+            }
+            
+            .project-image {
+                float: none;
+                margin: 0 auto 20px;
+                display: block;
+                max-width: 100%;
+            }
+            
+            .project-comparison {
+                flex-direction: column;
+            }
+            
+            .stamp {
+                width: 100px;
+                height: 100px;
+                top: 30px;
+                right: 30px;
+            }
+            
+            .interactive-note {
+                position: relative;
+                margin: 20px auto;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+            }
+
+            .evolution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .difficulty-section {
+                flex-direction: column;
+            }
+
+            .comparison-images {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="journal-container">
+        <div class="journal">
+            <div class="journal-frame">
+                <div class="inner-frame">
+                    <div class="inner-content">
+                        <div class="journal-content">
+                            <div class="journal-header">
+                                <div class="journal-title">Le Petit Archiviste</div>
+                                <div class="journal-subtitle">Édition Spéciale Portfolio</div>
+                                <div class="divider"></div>
+                                <div class="journal-date">Mardi 6 Mai 2025</div>
+                            </div>
+
+                            <div class="newspaper-headline">Projet CLEE</div>
+                            <div class="newspaper-subheadline">Une collaboration enrichissante au service de l'orientation</div>
+
+                            <div class="content">
+                                <!-- Section 1: Résumé du projet -->
+                                <div class="article-section">
+                                    <h2 class="article-title">Résumé du Projet</h2>
+                                    <img src="src/sitemarathon.png" alt="Illustration du projet CLEE" class="project-image">
+                                    <div class="two-columns">
+                                        <p><span class="first-letter">J</span>'ai eu l'opportunité de participer à un projet passionnant pour l'association CLEE, dont la mission est d'accompagner les élèves de 3ème et de seconde dans leur recherche de stage. Au sein d'une équipe dynamique, ma contribution s'est principalement concentrée sur la conception et le développement du site web.</p>
+                                        <p>Cette plateforme joue un rôle essentiel dans la mise en relation entre les étudiants et les entreprises partenaires, facilitant ainsi l'accès aux opportunités de stage. Le défi consistait à créer une interface intuitive, moderne et adaptée aux besoins spécifiques de l'association.</p>
+                                        <p>La collaboration étroite avec les membres de l'équipe a permis de définir les fonctionnalités clés et d'assurer une cohérence visuelle avec l'identité de l'association.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Section 2: Difficultés rencontrées -->
+                                <div class="article-section">
+                                    <h2 class="article-title">Difficultés Rencontrées</h2>
+                                    <div class="difficulty-section">
+                                        <div class="difficulty-card">
+                                            <div class="difficulty-header">
+                                                <div class="difficulty-icon">🎨</div>
+                                                <h3 class="difficulty-title">Adaptation à la charte graphique</h3>
+                                            </div>
+                                            <p>L'une des principales difficultés rencontrées a été l'adaptation aux fréquents changements de la charte graphique, particulièrement au début du projet. Ces modifications régulières ont nécessité une grande flexibilité et capacité d'adaptation pour assurer la cohérence visuelle du site.</p>
+                                            <div class="evolution-image-container">
+                                                <img src="src/charte.png" alt="Illustration des changements de charte graphique" class="evolution-image">
+                                            </div>
+                                        </div>
+                                        <div class="difficulty-card">
+                                            <div class="difficulty-header">
+                                                <div class="difficulty-icon">💻</div>
+                                                <h3 class="difficulty-title">Maîtrise de WordPress</h3>
+                                            </div>
+                                            <p>N'ayant pas souvent travaillé avec WordPress auparavant, j'ai dû rapidement me familiariser avec cet environnement CMS. La gestion de la responsivité du site a représenté un défi particulier, m'obligeant à approfondir mes connaissances techniques et à rechercher des solutions adaptées.</p>
+                                            <div class="evolution-image-container">
+                                                <img src="src/sitemarathon.png" alt="Illustration des difficultés avec WordPress" class="evolution-image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Section 3: Évolution -->
+                                <div class="article-section">
+                                    <h2 class="article-title">Évolution et Progrès</h2>
+                                    <div class="evolution-grid">
+                                        <div class="evolution-item">
+                                            <h3 class="evolution-title">Progression depuis BGE Ouest Hérault</h3>
+                                            <div class="evolution-images">
+                                                <div class="evolution-image-container">
+                                                    <img src="src/banière.png" alt="Stage BGE - Début" class="evolution-image">
+                                                    <div class="evolution-caption">Début du stage BGE</div>
+                                                </div>
+                                                <div class="evolution-arrow">↓</div>
+                                                <div class="evolution-image-container">
+                                                    <img src="src/sitemarathon.png" alt="Projet CLEE - Résultat" class="evolution-image">
+                                                    <div class="evolution-caption">Projet CLEE actuel</div>
+                                                </div>
+                                            </div>
+                                            <p>Mon précédent stage chez BGE Ouest Hérault, où j'ai également travaillé sur WordPress, m'a servi de base d'apprentissage. Je constate une nette amélioration tant sur les aspects techniques que sur ma capacité à concevoir des interfaces attrayantes et fonctionnelles.</p>
+                                        </div>
+                                        <div class="evolution-item">
+                                            <h3 class="evolution-title">Évolution au sein du projet</h3>
+                                            <div class="evolution-images">
+                                                <div class="evolution-image-container">
+                                                    <img src="src/marathon.png" alt="Première maquette" class="evolution-image">
+                                                    <div class="evolution-caption">Première maquette</div>
+                                                </div>
+                                                <div class="evolution-arrow">↓</div>
+                                                <div class="evolution-image-container">
+                                                    <img src="src/sitemarathon.png" alt="Version finale" class="evolution-image">
+                                                    <div class="evolution-caption">Version finale</div>
+                                                </div>
+                                            </div>
+                                            <p>La comparaison entre ma première maquette et le résultat final illustre parfaitement ma progression. Si les premiers designs présentaient des faiblesses importantes, j'ai su m'adapter, apprendre de mes erreurs et améliorer considérablement la qualité de mon travail.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-conclusion">
+                                    <p>Ce projet avec l'association CLEE a représenté un véritable tremplin dans mon développement professionnel, me permettant de relever des défis techniques tout en contribuant à une mission éducative importante.</p>
+                                </div>
+                            </div>
+
+                            <div class="buttons-container">
+                                <button data-page="index.html" class="prev-button">Page Précédente</button>
+                                <button class="next-button">Page Suivante</button>
+                            </div>
+                        </div>
+
+                        <!-- Décorations -->
+                        <div class="stamp">
+                            <div class="stamp-text">Portfolio<br>2025</div>
+                        </div>
+
+                        <div class="corner-decoration top-left">&#10047;</div>
+                        <div class="corner-decoration top-right">&#10047;</div>
+                        <div class="corner-decoration bottom-left">&#10047;</div>
+                        <div class="corner-decoration bottom-right">&#10047;</div>
+
+                        <div class="interactive-note note1">
+                            N'hésitez pas à naviguer entre les pages pour découvrir l'ensemble de mon portfolio !
+                        </div>
+
+                        <div class="interactive-note note2">
+                            Ce projet a été une vraie occasion d'approfondir mes compétences en développement web !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation d'entrée du journal
+            setTimeout(function() {
+                document.querySelector('.journal').classList.add('animated');
+            }, 100);
+
+            // Affichage progressif du contenu
+            setTimeout(function() {
+                document.querySelector('.content').classList.add('visible');
+            }, 800);
+
+            // Gestion des boutons de navigation
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+
+            prevButton.addEventListener('click', function() {
+                navigateToPage('index.html'); // Remplacez par le chemin de votre page principale
+            });
+
+            nextButton.addEventListener('click', function() {
+                // Si vous avez une troisième page, sinon peut rediriger vers la page principale
+                navigateToPage('index.html'); // Ou autre page
+            });
+
+            function navigateToPage(url) {
+                document.querySelector('.journal').classList.add('turning');
+                
+                setTimeout(function() {
+                    window.location.href = url;
+                }, 700);
+            }
+
+            // Effet zoom sur journal au scroll
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                const journal = document.querySelector('.journal');
+                
+                if (scrollPosition > 100) {
+                    journal.classList.add('zoomed');
+                    journal.classList.remove('shrink');
+                } else {
+                    journal.classList.remove('zoomed');
+                    journal.classList.add('shrink');
+                }
+            });
+
+            // Navigation fixe au scroll
+            window.addEventListener('scroll', function() {
+                const navigation = document.querySelector('.navigation');
+                if (window.scrollY > 200) {
+                    navigation.classList.add('visible');
+                } else {
+                    navigation.classList.remove('visible');
+                }
+            });
+
+            // Animation des notes interactives
+            const notes = document.querySelectorAll('.interactive-note');
+            notes.forEach(note => {
+                note.addEventListener('mouseover', function() {
+                    this.style.zIndex = '20';
+                });
+                
+                note.addEventListener('mouseout', function() {
+                    setTimeout(() => {
+                        this.style.zIndex = '10';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
