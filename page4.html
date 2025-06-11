@@ -753,6 +753,39 @@
                 flex-direction: column;
             }
         }
+        .video-frame {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px;
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s ease;
+}
+
+.video-frame:hover {
+    transform: rotate(0.5deg) scale(1.02);
+}
+
+.magic-video {
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 4px;
+}
+
+.video-caption {
+    font-style: italic;
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+}
+
+@keyframes sparkleBorder {
+    0% { box-shadow: 0 0 10px #8a7e66; }
+    50% { box-shadow: 0 0 20px #c8b79e; }
+    100% { box-shadow: 0 0 10px #8a7e66; }
+}
+
     </style>
 </head>
 <body>
@@ -780,12 +813,12 @@
                                     <div class="two-columns">
                                         <p><span class="first-letter">A</span>ssociation CLEE - Mission orientation :</p>
                                         <ul>
-                                            <li>• Accompagnement élèves 3ème & 2nde</li>
-                                            <li>• Recherche de stages</li>
-                                            <li>• Développement site web</li>
-                                            <li>• Interface étudiants/entreprises</li>
-                                            <li>• Design moderne et intuitif</li>
-                                            <li>• Collaboration équipe</li>
+                                            <li>Accompagnement élèves 3ème & 2nde</li>
+                                            <li>Recherche de stages</li>
+                                            <li>Développement site web</li>
+                                            <li>Interface étudiants/entreprises</li>
+                                            <li>Design moderne et intuitif</li>
+                                            <li>Collaboration équipe</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -801,9 +834,9 @@
                                             </div>
                                             <p><strong>Problématique :</strong></p>
                                             <ul>
-                                                <li>• Changements fréquents début projet</li>
-                                                <li>• Adaptation constante requise</li>
-                                                <li>• Cohérence visuelle à maintenir</li>
+                                                <li>Changements fréquents début projet</li>
+                                                <li>Adaptation constante requise</li>
+                                                <li>Cohérence visuelle à maintenir</li>
                                             </ul>
                                             <div class="evolution-image-container">
                                                 <img src="src/charte.png" alt="Illustration des changements de charte graphique" class="evolution-image">
@@ -816,9 +849,9 @@
                                             </div>
                                             <p><strong>Apprentissage :</strong></p>
                                             <ul>
-                                                <li>• CMS peu maîtrisé au départ</li>
-                                                <li>• Gestion responsivité complexe</li>
-                                                <li>• Solutions techniques recherchées</li>
+                                                <li>CMS peu maîtrisé au départ</li>
+                                                <li>Gestion responsivité complexe</li>
+                                                <li>Solutions techniques recherchées</li>
                                             </ul>
                                             <div class="evolution-image-container">
                                                 <img src="src/sitemarathon.png" alt="Illustration des difficultés avec WordPress" class="evolution-image">
@@ -826,6 +859,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <section class="magic-video-section">
+                                    <div class="video-frame">
+                                        <video controls class="magic-video" src="src/clee_video.mp4" poster="poster.jpg"></video>
+                                        <p class="video-caption">Une archive de mes défis...</p>
+                                    </div>
+                                </section>
 
                                 <!-- Section 3: Évolution -->
                                 <div class="article-section">
@@ -846,9 +886,9 @@
                                             </div>
                                             <p><strong>Amélioration notable :</strong></p>
                                             <ul>
-                                                <li>• Base WordPress acquise</li>
-                                                <li>• Techniques affinées</li>
-                                                <li>• Design plus attractif</li>
+                                                <li>Base WordPress acquise</li>
+                                                <li>Techniques affinées</li>
+                                                <li>Design plus attractif</li>
                                             </ul>
                                         </div>
                                         <div class="evolution-item">
@@ -866,9 +906,9 @@
                                             </div>
                                             <p><strong>Évolution visible :</strong></p>
                                             <ul>
-                                                <li>• Apprentissage des erreurs</li>
-                                                <li>• Qualité considérablement améliorée</li>
-                                                <li>• Adaptation et persévérance</li>
+                                                <li>Apprentissage des erreurs</li>
+                                                <li>Qualité considérablement améliorée</li>
+                                                <li>Adaptation et persévérance</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -895,9 +935,6 @@
                         <div class="corner-decoration bottom-left">&#10047;</div>
                         <div class="corner-decoration bottom-right">&#10047;</div>
 
-                        <div class="interactive-note note1">
-                            N'hésitez pas à naviguer entre les pages pour découvrir l'ensemble de mon portfolio !
-                        </div>
 
                         <div class="interactive-note note2">
             Progression WordPress remarquable !

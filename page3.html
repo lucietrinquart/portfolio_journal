@@ -550,7 +550,6 @@
         }
         
         .key-points li::before {
-            content: "•";
             position: absolute;
             left: 0;
             color: #8a7e66;
@@ -613,6 +612,39 @@
                 font-size: 32px;
             }
         }
+
+        .video-frame {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px;
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s ease;
+}
+
+.video-frame:hover {
+    transform: rotate(0.5deg) scale(1.02);
+}
+
+.magic-video {
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 4px;
+}
+
+.video-caption {
+    font-style: italic;
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+}
+
+@keyframes sparkleBorder {
+    0% { box-shadow: 0 0 10px #8a7e66; }
+    50% { box-shadow: 0 0 20px #c8b79e; }
+    100% { box-shadow: 0 0 10px #8a7e66; }
+}
     </style>
 </head>
 <!DOCTYPE html>
@@ -679,10 +711,15 @@
                                 <div class="article-section">
                                     <h3 class="article-title">Le Projet en Bref</h3>
                                     <div class="two-columns">
-                                        <p><span class="first-letter">N</span>ous avions pour mission de concevoir une maquette complète pour un festival imaginaire nommé "OX Fest Festival". Ce projet devait être réalisé en anglais, avec une liberté créative totale quant aux technologies à utiliser.</p>
-                                        <p>J'ai choisi de relever ce défi en utilisant HTML, CSS et JavaScript pour créer une expérience web immersive et interactive. Cette approche m'a permis de donner vie à ma vision tout en démontrant mes compétences techniques en développement front-end.</p>
-                                        <p>La première étape fut une recherche approfondie d'inspiration, suivie par la conception d'une maquette initiale, que j'ai ensuite affinée jusqu'à obtenir le résultat final que vous pouvez découvrir ci-dessous.</p>
-                                    </div>
+                                        <p><span class="first-letter">N</span>ous devions créer une maquette pour un festival imaginaire appelé "OX Fest Festival". Le projet était en anglais, avec une grande liberté sur les technologies à utiliser.</p>
+                                        <p>Voici les étapes du projet :</p>
+                                        <ul>
+                                            <li>Recherche d'inspiration</li>
+                                            <li>Création d'une première maquette</li>
+                                            <li>Améliorations jusqu'à la version finale</li>
+                                        </ul>
+                                        </div>
+
                                     
                                     <div class="highlight-box">
                                         <span class="highlight-title">Points clés du projet</span>
@@ -696,7 +733,7 @@
                                     </div>
                                     
                                     <div class="interactive-note note1">
-                                        N'oubliez pas de mentionner l'aspect responsive, c'est crucial pour l'évaluation!
+                                        Les couleurs et l'ambiance sont essentielles pour transmettre l'esprit du festival!
                                     </div>
                                 </div>
                                 
@@ -741,10 +778,15 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="interactive-note note2">
-                                        Les couleurs et l'ambiance sont essentielles pour transmettre l'esprit du festival!
-                                    </div>
+                                    
                                 </div>
+
+                                <section class="magic-video-section">
+                                    <div class="video-frame">
+                                        <video controls class="magic-video" src="src/ox_fest_video.mp4" poster="poster.jpg"></video>
+                                        <p class="video-caption">Une archive de mes défis...</p>
+                                    </div>
+                                </section>
                                 
                                 <!-- Section 3: Évolution du projet -->
                                 <div class="article-section">
